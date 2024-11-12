@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +10,11 @@ public class PlayerController : MonoBehaviour
     private CharacterController _playerController;
     private PlayerAnimator _playerMovement;
     public InputActionReference movementInput;
+    public InputActionReference fireInput;
+
+    public Transform projectilePrefab;
+    public Transform projectileSpawnPosition;
+    public LayerMask projectileColliderLayerMask;
 
     [Header("Player Properties")]
     public float speed = 4f;
@@ -22,12 +29,29 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _movement;
     private Vector3 _velocity;
+    private Vector3 _worldMousePosition = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerController = GetComponent<CharacterController>();
         _playerMovement = GetComponent<PlayerAnimator>();
+    }
+
+    void OnEnable()
+    {
+        fireInput.action.started += Fire;
+    }
+
+    void OnDisable()
+    {
+        fireInput.action.started -= Fire;
+    }
+
+    private void Fire(InputAction.CallbackContext context)
+    {
+        Vector3 aimDir = (_worldMousePosition - projectileSpawnPosition.position).normalized;
+        Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
     }
 
     // Update is called once per frame
@@ -43,6 +67,14 @@ public class PlayerController : MonoBehaviour
         }
 
         Move();
+
+        // Aiming
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, projectileColliderLayerMask))
+        {
+            _worldMousePosition = raycastHit.point;
+        }
     }
 
     private void Move()

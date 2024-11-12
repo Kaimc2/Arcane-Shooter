@@ -20,7 +20,8 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        transform.position = playerHead.position + offsets;
+        Vector3 cameraOffsets = playerHead.forward * offsets.z + playerHead.up * offsets.y + playerHead.right * offsets.x;
+        transform.position = playerHead.position + cameraOffsets;
     }
 
     // Update is called once per frame

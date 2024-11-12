@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2610849028522595287}
+  - component: {fileID: 2279034751324946737}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,6 +33,28 @@ Transform:
   - {fileID: 2207519917808887866}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2279034751324946737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204682336801117122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf49b8a486e81241878dde6a23d5274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 2794779306935415380}
+  - {fileID: 6272858553647853966}
+  - {fileID: 8996607939130562935}
+  - {fileID: 3787734374359453511}
+  - {fileID: 8314300293853970739}
+  numberInput: {fileID: 2032917202748807926, guid: b5a5a109ab70b7245b1263b86246830b,
+    type: 3}
+  scrollInput: {fileID: 508196586363988342, guid: b5a5a109ab70b7245b1263b86246830b,
+    type: 3}
 --- !u!1 &221097724718244920
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +639,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: f4f0d1dd-a33d-4f11-bc33-7b4f89d5622a
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 4335527451836568180}
 --- !u!114 &3235378985321141198
@@ -1067,7 +1090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2794779306935415380
 Transform:
   m_ObjectHideFlags: 0
@@ -2023,7 +2046,7 @@ GameObject:
   - component: {fileID: 6301872436511248926}
   - component: {fileID: 6291862460581973522}
   m_Layer: 0
-  m_Name: Hydro_Staff (2)
+  m_Name: Hydro_Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2157,7 +2180,7 @@ Transform:
   m_GameObject: {fileID: 6385557592637025522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6770002, z: 0.18599999}
+  m_LocalPosition: {x: 0, y: 1.652, z: 0.225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2176,12 +2199,12 @@ Camera:
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 14.3010435
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -2194,9 +2217,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.25
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2281,7 +2304,7 @@ MonoBehaviour:
   mouseSensitivity: 80
   playerBody: {fileID: 2207519917808887866}
   playerHead: {fileID: 5515636615826320181}
-  offsets: {x: 0, y: 0.1, z: 0}
+  offsets: {x: 0.05, y: 0.15, z: 0.1}
 --- !u!1 &6418414432489950442
 GameObject:
   m_ObjectHideFlags: 0
