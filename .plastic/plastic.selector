@@ -1,0 +1,3 @@
+repository "Arcane Shooter@picheyprak@cloud"
+  path "/"
+    smartbranch "/main"
