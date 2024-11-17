@@ -11,7 +11,6 @@ public class CameraController : MonoBehaviour
     public Vector3 offsets;
     private float _xRotation = 0f;
 
-
     // Start is called before the first frame update
     void Start()
     {
