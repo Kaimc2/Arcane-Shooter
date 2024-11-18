@@ -7,11 +7,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController _playerController;
     private PlayerAnimator _playerMovement;
     public InputActionReference movementInput;
-    public InputActionReference fireInput;
-
-    public Transform projectilePrefab;
-    public Transform projectileSpawnPosition;
-    public LayerMask projectileColliderLayerMask;
 
     [Header("Player Properties")]
     public float speed = 4f;
@@ -40,79 +35,79 @@ public class PlayerController : MonoBehaviour
         _playerMovement = GetComponent<PlayerAnimator>();
     }
 
-    void OnEnable()
-    {
-        fireInput.action.started += StartFiring;
-        fireInput.action.canceled += StopFiring;
-    }
+    // void OnEnable()
+    // {
+    //     fireInput.action.started += StartFiring;
+    //     fireInput.action.canceled += StopFiring;
+    // }
 
-    void OnDisable()
-    {
-        fireInput.action.started -= StartFiring;
-        fireInput.action.canceled -= StopFiring;
-    }
+    // void OnDisable()
+    // {
+    //     fireInput.action.started -= StartFiring;
+    //     fireInput.action.canceled -= StopFiring;
+    // }
 
-    private void Fire(InputAction.CallbackContext context)
-    {
-        Vector3 aimDir = (_worldMousePosition - projectileSpawnPosition.position).normalized;
-        Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-    }
+    // private void Fire(InputAction.CallbackContext context)
+    // {
+    //     Vector3 aimDir = (_worldMousePosition - projectileSpawnPosition.position).normalized;
+    //     Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+    // }
 
-    private void StartFiring(InputAction.CallbackContext context)
-    {
-        if (fireCoroutine == null)
-        {
-            fireCoroutine = StartCoroutine(FireContinuously());
-        }
+    // private void StartFiring(InputAction.CallbackContext context)
+    // {
+    //     if (fireCoroutine == null)
+    //     {
+    //         fireCoroutine = StartCoroutine(FireContinuously());
+    //     }
 
-        // Spawn VFX
-        if (activeLightningVFX == null)
-        {
-            activeLightningVFX = Instantiate(lightningVFXPrefab, projectileSpawnPosition.position, Quaternion.identity);
-            activeLightningVFX.transform.parent = projectileSpawnPosition;
-        }
-    }
+    //     // Spawn VFX
+    //     if (activeLightningVFX == null)
+    //     {
+    //         activeLightningVFX = Instantiate(lightningVFXPrefab, projectileSpawnPosition.position, Quaternion.identity);
+    //         activeLightningVFX.transform.parent = projectileSpawnPosition;
+    //     }
+    // }
 
-    private void StopFiring(InputAction.CallbackContext context)
-    {
-        if (fireCoroutine != null)
-        {
-            StopCoroutine(fireCoroutine);
-            fireCoroutine = null;
-        }
+    // private void StopFiring(InputAction.CallbackContext context)
+    // {
+    //     if (fireCoroutine != null)
+    //     {
+    //         StopCoroutine(fireCoroutine);
+    //         fireCoroutine = null;
+    //     }
 
-        // Destroy VFX
-        if (activeLightningVFX != null)
-        {
-            Destroy(activeLightningVFX);
-            activeLightningVFX = null;
-        }
-    }
+    //     // Destroy VFX
+    //     if (activeLightningVFX != null)
+    //     {
+    //         Destroy(activeLightningVFX);
+    //         activeLightningVFX = null;
+    //     }
+    // }
 
-    private IEnumerator FireContinuously()
-    {
-        while (true)
-        {
-            FireProjectile();
-            yield return new WaitForSeconds(0.2f); // Adjust the fire rate as needed
-        }
-    }
+    // private IEnumerator FireContinuously()
+    // {
+    //     while (true)
+    //     {
+    //         FireProjectile();
+    //         yield return new WaitForSeconds(0.2f); // Adjust the fire rate as needed
+    //     }
+    // }
 
-    private void FireProjectile()
-    {
-        // Calculate direction
-        Vector3 aimDir = (_worldMousePosition - projectileSpawnPosition.position).normalized;
+    // private void FireProjectile()
+    // {
+    //     // Calculate direction
+    //     Vector3 aimDir = (_worldMousePosition - projectileSpawnPosition.position).normalized;
 
-        // Instantiate projectile
-        Transform projectile = Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+    //     // Instantiate projectile
+    //     Transform projectile = Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
 
-        // Add Rigidbody force
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.AddForce(aimDir * 20f, ForceMode.Impulse); // Adjust speed as needed
-        }
-    }
+    //     // Add Rigidbody force
+    //     Rigidbody rb = projectile.GetComponent<Rigidbody>();
+    //     if (rb != null)
+    //     {
+    //         rb.AddForce(aimDir * 20f, ForceMode.Impulse); // Adjust speed as needed
+    //     }
+    // }
 
     void Update()
     {
@@ -126,19 +121,11 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        // Update aiming
-        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, projectileColliderLayerMask))
-        {
-            _worldMousePosition = raycastHit.point;
-        }
-
         // Update VFX position
-        if (activeLightningVFX != null)
-        {
-            activeLightningVFX.transform.position = projectileSpawnPosition.position;
-        }
+        // if (activeLightningVFX != null)
+        // {
+        //     activeLightningVFX.transform.position = projectileSpawnPosition.position;
+        // }
     }
 
     private void Move()
@@ -161,6 +148,7 @@ public class PlayerController : MonoBehaviour
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity);
         }
+
         _velocity.y += _gravity * Time.deltaTime;
         _playerController.Move(_velocity * Time.deltaTime);
     }

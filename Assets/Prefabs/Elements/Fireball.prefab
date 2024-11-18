@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5328374437540189769}
   - component: {fileID: 5527309211978056239}
   m_Layer: 0
-  m_Name: Projectile
-  m_TagString: Untagged
+  m_Name: Fireball
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 103408464586617105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab672824c1f8e443b69299fe98d2f79, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a719e267580068479c19aab34c3abcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 0
+  speed: 10
 --- !u!65 &5328374437540189769
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -78,7 +78,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103408464586617105}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
