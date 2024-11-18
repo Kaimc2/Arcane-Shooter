@@ -5,14 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Rigidbody _projectileRigidbody;
-    private Transform _projectileTransform;
-    public float speed = 5f;
-    public Color color = Color.red;
+    public float damage;
+    public float speed;
 
     void Awake()
     {
         _projectileRigidbody = GetComponent<Rigidbody>();
-        _projectileTransform = GetComponent<Transform>();
     }
 
     // Start is called before the first frame update

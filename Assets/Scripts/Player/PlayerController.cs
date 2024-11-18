@@ -10,14 +10,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController _playerController;
     private PlayerAnimator _playerMovement;
     public InputActionReference movementInput;
-    public InputActionReference fireInput;
-
-    public Transform projectileSpawnPosition;
-    public LayerMask projectileColliderLayerMask;
-
-    [Header("Wands")]
-    public FireStaff fireStaff;
-    private Action<InputAction.CallbackContext> fireAction;
 
     [Header("Player Properties")]
     public float speed = 4f;
@@ -32,26 +24,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _movement;
     private Vector3 _velocity;
-    private Vector3 _worldMousePosition = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerController = GetComponent<CharacterController>();
         _playerMovement = GetComponent<PlayerAnimator>();
-    }
-
-    void OnEnable()
-    {
-        fireAction = ctx => fireStaff.Fire(_worldMousePosition, projectileSpawnPosition);
-
-        // Initialize the shooting function
-        fireInput.action.started += fireAction;
-    }
-
-    void OnDisable()
-    {
-        fireInput.action.started -= fireAction;
     }
 
     // Update is called once per frame
@@ -67,18 +45,6 @@ public class PlayerController : MonoBehaviour
         }
 
         Move();
-
-        // Aiming
-        Vector2 screenCenterPoint = new(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, projectileColliderLayerMask))
-        {
-            _worldMousePosition = raycastHit.point;
-        }
-        else
-        {
-            _worldMousePosition = ray.GetPoint(10);
-        }
     }
 
     private void Move()
