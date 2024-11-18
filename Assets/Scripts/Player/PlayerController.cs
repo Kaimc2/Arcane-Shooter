@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity);
         }
+
         _velocity.y += _gravity * Time.deltaTime;
         _playerController.Move(_velocity * Time.deltaTime);
     }

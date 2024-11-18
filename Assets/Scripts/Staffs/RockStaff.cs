@@ -21,7 +21,7 @@ public class RockStaff : Staff
     Vector3 aimDir = (worldMousePosition - projectileSpawnPosition.position).normalized;
 
     // Check if enough time passed since last shot 
-    if (Time.time > _lastFireTime + fireRate)
+    if (Time.time > _lastFireTime + cooldown)
     {
       _lastFireTime = Time.time;
       Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));

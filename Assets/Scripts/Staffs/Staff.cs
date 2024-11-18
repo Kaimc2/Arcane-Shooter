@@ -10,7 +10,7 @@ public abstract class Staff : MonoBehaviour
 {
   public Transform projectilePrefab;  // Reference to the projectile object
   public Transform projectileSpawnPosition; // Reference to the projectile spawn location
-  public float fireRate;
+  public float cooldown;
 
   public abstract void Fire(Vector3 worldMousePosition);
 }

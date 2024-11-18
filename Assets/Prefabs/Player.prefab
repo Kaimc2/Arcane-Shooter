@@ -732,7 +732,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2eacfecc4de52a45b2bbd8331b758ae, type: 2}
+  - {fileID: 2100000, guid: 963846bdd6b16e142af22665617d9efe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1172,7 +1172,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c33a548d6df8c8a4daca736f3300dd9c, type: 2}
+  - {fileID: 2100000, guid: 35b16f1b7c4f495439348cfbd807781a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: f0a8ca2fc6bfee14b987a46574c72afa,
     type: 3}
   projectileSpawnPosition: {fileID: 2222349828772601128}
-  fireRate: 1
+  cooldown: 0
 --- !u!1 &3037263210481730064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: 4f25807f79a9187499be3695ce321ce6,
     type: 3}
   projectileSpawnPosition: {fileID: 4619569120490784386}
-  fireRate: 1
+  cooldown: 0
 --- !u!1 &3822114640944392608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,15 +1660,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4176683602212871658}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.23825188, y: -0.06408603, z: 0.0452222, w: 0.968031}
-  m_LocalPosition: {x: -0.00000008545194, y: 0.16773133, z: 0.00000011928803}
+  m_LocalRotation: {x: -0.21890253, y: 0.009625707, z: -0.20374149, w: 0.95418996}
+  m_LocalPosition: {x: 0.002, y: 0.128, z: -0.002}
   m_LocalScale: {x: 1, y: 1.0000006, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4625604791830650288}
   - {fileID: 655338225769913305}
   m_Father: {fileID: 6705043595149398129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -24.445, y: 6.786, z: -25.578}
 --- !u!1 &4804245937882053823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +1977,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c4067abc530f3245b4cf76b45fb814e, type: 2}
+  - {fileID: 2100000, guid: 5d611c1fd104b1640a2e6ae0c27a895a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2237,7 +2237,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: e186f9d553aa2ab42b111cbfc1859bc4,
     type: 3}
   projectileSpawnPosition: {fileID: 5990754898699578600}
-  fireRate: 3
+  cooldown: 0
 --- !u!1 &6329598215727567516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,7 +2338,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.25
+  near clip plane: 0.2
   far clip plane: 1000
   field of view: 80
   orthographic: 0
@@ -2771,14 +2771,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7668848186662547957}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.54184264, y: 0.43452522, z: 0.49110228, w: -0.5257499}
-  m_LocalPosition: {x: 0.055910423, y: 0.12906644, z: -0.0251459}
+  m_LocalRotation: {x: 0.41391164, y: 0.5501805, z: 0.59041274, w: -0.4211785}
+  m_LocalPosition: {x: 0.106, y: 0.125, z: -0.074}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2500889980893132885}
   m_Father: {fileID: 8753224043591345861}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -93.313, y: -154.02899, z: 46.447998}
 --- !u!1 &7754197991419965150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,7 +3126,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c33a548d6df8c8a4daca736f3300dd9c, type: 2}
+  - {fileID: 2100000, guid: d63c7e6d72484e3418d5deb6c920ffdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3163,7 +3163,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: 5ae0e655b2b355c4d83aead3e50ea630,
     type: 3}
   projectileSpawnPosition: {fileID: 3055570304933320312}
-  fireRate: 1
+  cooldown: 0
 --- !u!1 &8483767559539573536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3322,7 +3322,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c33a548d6df8c8a4daca736f3300dd9c, type: 2}
+  - {fileID: 2100000, guid: d63c7e6d72484e3418d5deb6c920ffdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3359,7 +3359,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: 6740eeece5dd76e48b42ca2056e74103,
     type: 3}
   projectileSpawnPosition: {fileID: 7520081252279302141}
-  fireRate: 5
+  cooldown: 0
 --- !u!1 &9012944035235965279
 GameObject:
   m_ObjectHideFlags: 0
