@@ -23,10 +23,10 @@ public class WeaponSwitch : MonoBehaviour
 
         if (numberInput.action.IsPressed())
         {
-            ChangeWeapon();
+            ChangeWeapon(_currentWeapon);
         }
 
-        if (scrollInput.action.IsPressed())
+        if (scrollInput.action.IsInProgress())
         {
             SwitchWeapon();
         }
@@ -52,19 +52,21 @@ public class WeaponSwitch : MonoBehaviour
             _currentWeapon = 4;
         }
 
-        ChangeWeapon();
+        ChangeWeapon(_currentWeapon);
     }
 
-    private void ChangeWeapon()
+    private void ChangeWeapon(int weaponIndex)
     {
+        weapons[weaponIndex].gameObject.SetActive(true);
+
         for (int i = 0; i < weapons.Length; i++)
         {
-            weapons[i].gameObject.SetActive(false);
-
-            if (i == _currentWeapon)
+            if (i == weaponIndex)
             {
-                weapons[i].gameObject.SetActive(true);
+                continue;
             }
+
+            weapons[i].gameObject.SetActive(false);
         }
     }
 }
