@@ -8,9 +8,7 @@ using UnityEngine.InputSystem;
 
 public class HydroStaff : Staff
 {
-  private float _lastFireTime = 0f;
-
-  public override void Fire(Vector3 worldMousePosition)
+  public override void Fire()
   {
     if (projectilePrefab == null || projectileSpawnPosition == null)
     {
@@ -18,13 +16,16 @@ public class HydroStaff : Staff
       return;
     }
 
-    Vector3 aimDir = (worldMousePosition - projectileSpawnPosition.position).normalized;
+    Vector3 aimDir = GetAimDirection();
 
     // Check if enough time passed since last shot 
-    if (Time.time > _lastFireTime + cooldown)
+    isOnCooldown = Time.time < lastFireTime + cooldown;
+    if (isOnCooldown)
     {
-      _lastFireTime = Time.time;
-      Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+      return;
     }
+    lastFireTime = Time.time;
+
+    Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
   }
 }

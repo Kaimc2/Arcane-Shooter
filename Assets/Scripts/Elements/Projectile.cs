@@ -5,12 +5,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Rigidbody _projectileRigidbody;
-    public float damage;
-    public float speed;
+    public AudioSource audioSource;
+    public AudioClip impactClip;
+
+    [Header("Projectile Properties")]
+    public float damage = 0f;
+    public float speed = 0f;
 
     void Awake()
     {
         _projectileRigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update

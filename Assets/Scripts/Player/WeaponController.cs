@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class WeaponController : MonoBehaviour
 {
     public Transform[] weapons;
-    public LayerMask projectileColliderLayerMask;
 
     public InputActionReference numberInput;
     public InputActionReference scrollInput;
@@ -16,9 +15,8 @@ public class WeaponController : MonoBehaviour
     private int _currentWeaponIndex = 0;
     private Staff[] _weaponScripts;
     private Action<InputAction.CallbackContext> _currentFireAction;
-
+    private Action<InputAction.CallbackContext> _currentStopFireAction;
     private Vector2 _scrollAxis;
-    private Vector3 _worldMousePosition = Vector3.zero;
 
     void Awake()
     {
@@ -40,30 +38,18 @@ public class WeaponController : MonoBehaviour
     {
         // Initialize the shooting function
         SetCurrentWeaponFiringAction();
-        fireInput.action.started += _currentFireAction;
+        fireInput.action.performed += _currentFireAction;
     }
 
     void OnDisable()
     {
-        fireInput.action.started -= _currentFireAction;
+        fireInput.action.performed -= _currentFireAction;
     }
 
     // Update is called once per frame
     void Update()
     {
         _scrollAxis = scrollInput.action.ReadValue<Vector2>();
-
-        // Create a raycast in the center of the screen for aiming 
-        Vector2 screenCenterPoint = new(Screen.width / 2f, Screen.height / 2f);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, projectileColliderLayerMask))
-        {
-            _worldMousePosition = raycastHit.point;
-        }
-        else
-        {
-            _worldMousePosition = ray.GetPoint(10);
-        }
 
         // Switch weapon by numbers
         if (numberInput.action.IsPressed())
@@ -97,7 +83,8 @@ public class WeaponController : MonoBehaviour
     private void SwitchWeapon(int weaponIndex)
     {
         // Unsubscribe from previous weapon's Fire function 
-        fireInput.action.started -= _currentFireAction;
+        fireInput.action.performed -= _currentFireAction;
+        fireInput.action.canceled -= _currentStopFireAction;
 
         // Activate the selected weapon
         for (int i = 0; i < weapons.Length; i++)
@@ -109,7 +96,8 @@ public class WeaponController : MonoBehaviour
 
         // Subscribe to the selected weapon's Fire function 
         SetCurrentWeaponFiringAction();
-        fireInput.action.started += _currentFireAction;
+        fireInput.action.performed += _currentFireAction;
+        fireInput.action.canceled += _currentStopFireAction;
 
         Debug.Log($"Current Weapon: {weapons[_currentWeaponIndex].name}");
     }
@@ -119,12 +107,19 @@ public class WeaponController : MonoBehaviour
         Staff weapon = _weaponScripts[_currentWeaponIndex];
         if (weapon != null)
         {
-            _currentFireAction = ctx => weapon.Fire(_worldMousePosition); 
+            _currentFireAction = ctx => weapon.Fire();
+            _currentStopFireAction = ctx => weapon.StopFire();
         }
         else
         {
             Debug.LogWarning("No Staff script attached to the selected staff");
             _currentFireAction = null;
+            _currentStopFireAction = null;
         }
+    }
+
+    public Staff GetCurrentWeapon()
+    {
+        return _weaponScripts[_currentWeaponIndex];
     }
 }

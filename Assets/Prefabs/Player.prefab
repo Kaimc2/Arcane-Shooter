@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 204682336801117122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 957e3454b6d85bf49859d808cf5f2a53, type: 3}
+  m_Script: {fileID: 11500000, guid: aa7700a7040a37b48a199cab7f9864c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
@@ -51,9 +51,6 @@ MonoBehaviour:
   - {fileID: 8996607939130562935}
   - {fileID: 3787734374359453511}
   - {fileID: 8314300293853970739}
-  projectileColliderLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
   numberInput: {fileID: 2032917202748807926, guid: b5a5a109ab70b7245b1263b86246830b,
     type: 3}
   scrollInput: {fileID: 508196586363988342, guid: b5a5a109ab70b7245b1263b86246830b,
@@ -494,7 +491,7 @@ GameObject:
   - component: {fileID: 1410727100291729411}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -667,7 +664,7 @@ MonoBehaviour:
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8
 --- !u!114 &1410727100291729411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,7 +910,7 @@ Transform:
   m_GameObject: {fileID: 2216975650582381622}
   serializedVersion: 2
   m_LocalRotation: {x: 0.025792912, y: 0.24087852, z: -0.9631852, w: 0.116561554}
-  m_LocalPosition: {x: 0.00900024, y: -1.1760031, z: 0.00800073}
+  m_LocalPosition: {x: -0.014, y: -1.242, z: -0.002}
   m_LocalScale: {x: 1.9821624, y: 1.7439601, z: 1.9153658}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1206,9 +1203,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33ce2933cd2e4548935cd8c1736d9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6496672675037705954, guid: f0a8ca2fc6bfee14b987a46574c72afa,
+  projectilePrefab: {fileID: 330196948972584553, guid: c7d2d327848f86344ba0715b4c4d28e6,
     type: 3}
   projectileSpawnPosition: {fileID: 2222349828772601128}
+  projectileColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   cooldown: 0
 --- !u!1 &3037263210481730064
 GameObject:
@@ -1428,7 +1428,7 @@ Transform:
   m_GameObject: {fileID: 3525488272437986756}
   serializedVersion: 2
   m_LocalRotation: {x: 0.025792897, y: 0.24087854, z: -0.9631852, w: 0.116561495}
-  m_LocalPosition: {x: 0.009, y: -1.176, z: 0.008}
+  m_LocalPosition: {x: -0.014, y: -1.242, z: -0.002}
   m_LocalScale: {x: 1.9821624, y: 1.7439605, z: 1.9153663}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1461,14 +1461,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3784487318233445195}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.64470506, y: 0.55412346, z: 0.49015296, w: 0.19249108}
-  m_LocalPosition: {x: -0.0677, y: 0.0007, z: 0.0041}
+  m_LocalRotation: {x: -0.5469869, y: 0.3504043, z: 0.5880729, w: 0.4818636}
+  m_LocalPosition: {x: -0.07190666, y: 0.002691592, z: -0.033257384}
   m_LocalScale: {x: 0.50000024, y: 0.5999996, z: 0.5000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4619569120490784386}
   m_Father: {fileID: 3419897904496761774}
-  m_LocalEulerAnglesHint: {x: -127.682, y: 43.229004, z: 59.332}
+  m_LocalEulerAnglesHint: {x: -110.07, y: 117.046005, z: -32.307007}
 --- !u!33 &3816233773838217163
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1534,6 +1534,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: 4f25807f79a9187499be3695ce321ce6,
     type: 3}
   projectileSpawnPosition: {fileID: 4619569120490784386}
+  projectileColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   cooldown: 0
 --- !u!1 &3822114640944392608
 GameObject:
@@ -2237,6 +2240,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: e186f9d553aa2ab42b111cbfc1859bc4,
     type: 3}
   projectileSpawnPosition: {fileID: 5990754898699578600}
+  projectileColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   cooldown: 0
 --- !u!1 &6329598215727567516
 GameObject:
@@ -2419,13 +2425,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6385557592637025522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 802785009ae3e7440b734b1d0b760578, type: 3}
+  m_Script: {fileID: 11500000, guid: f61591ac763b7684b87628aabca837c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 80
   playerBody: {fileID: 2207519917808887866}
   playerHead: {fileID: 5515636615826320181}
-  offsets: {x: 0.05, y: 0.15, z: 0.1}
+  offsets: {x: 0, y: 0.15, z: 0.15}
 --- !u!1 &6418414432489950442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,7 +2616,7 @@ Transform:
   m_GameObject: {fileID: 7089700816240209850}
   serializedVersion: 2
   m_LocalRotation: {x: 0.01117974, y: 0.28110906, z: -0.9571632, w: 0.068494104}
-  m_LocalPosition: {x: -0.016, y: -1.104, z: 0.003}
+  m_LocalPosition: {x: -0.037, y: -1.216, z: 0.094}
   m_LocalScale: {x: 1.9937848, y: 1.756487, z: 1.8899157}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2641,7 +2647,7 @@ Transform:
   m_GameObject: {fileID: 7297683198925016456}
   serializedVersion: 2
   m_LocalRotation: {x: 0.025792979, y: 0.24087843, z: -0.96318525, w: 0.116561525}
-  m_LocalPosition: {x: 0.008999882, y: -1.1760038, z: 0.008001147}
+  m_LocalPosition: {x: -0.014, y: -1.242, z: -0.002}
   m_LocalScale: {x: 1.9821631, y: 1.7439586, z: 1.915366}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3163,6 +3169,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: 5ae0e655b2b355c4d83aead3e50ea630,
     type: 3}
   projectileSpawnPosition: {fileID: 3055570304933320312}
+  projectileColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   cooldown: 0
 --- !u!1 &8483767559539573536
 GameObject:
@@ -3221,7 +3230,7 @@ Transform:
   m_GameObject: {fileID: 8626332011665612144}
   serializedVersion: 2
   m_LocalRotation: {x: -0.9516843, y: 0.17153838, z: 0.042704627, w: -0.2510934}
-  m_LocalPosition: {x: 0.013, y: -0.994, z: 0.019}
+  m_LocalPosition: {x: 0.025, y: -1.008, z: -0.067}
   m_LocalScale: {x: 1.9527186, y: 1.7654386, z: 1.917685}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3286,14 +3295,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994255313679066805}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4601637, y: -0.27889478, z: 0.6869045, w: 0.48849696}
-  m_LocalPosition: {x: -0.1069, y: -0.0175, z: -0.0086}
+  m_LocalRotation: {x: 0.615469, y: -0.5014467, z: 0.51100767, w: 0.32957593}
+  m_LocalPosition: {x: -0.117, y: -0.006, z: -0.045}
   m_LocalScale: {x: 0.5000002, y: 0.5999996, z: 0.5000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7520081252279302141}
   m_Father: {fileID: 3419897904496761774}
-  m_LocalEulerAnglesHint: {x: 123.619995, y: 220.515, z: 311.54102}
+  m_LocalEulerAnglesHint: {x: 113.33899, y: 311.112, z: 405.057}
 --- !u!33 &8981096295420035047
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3359,7 +3368,12 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6496672675037705954, guid: 6740eeece5dd76e48b42ca2056e74103,
     type: 3}
   projectileSpawnPosition: {fileID: 7520081252279302141}
+  projectileColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   cooldown: 0
+  lightningVFXPrefab: {fileID: 7707252764822558261, guid: 28c536491af91034b9439b638af378d0,
+    type: 3}
 --- !u!1 &9012944035235965279
 GameObject:
   m_ObjectHideFlags: 0

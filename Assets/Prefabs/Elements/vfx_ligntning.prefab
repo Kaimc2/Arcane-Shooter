@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 1388582429411755738}
   - component: {fileID: -5294428587141004228}
   - component: {fileID: -315358976330143507}
-  - component: {fileID: 6104540753482077240}
+  - component: {fileID: 7460796691520655986}
   m_Layer: 0
   m_Name: vfx_ligntning
   m_TagString: Untagged
@@ -162,14 +162,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7707252764822558261}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31470355, y: -0.47551095, z: 0.8197704, w: 0.053175494}
+  m_LocalRotation: {x: -0.31470534, y: 0.47551206, z: -0.81976885, w: -0.05317769}
   m_LocalPosition: {x: -0.4251723, y: 3.9822433, z: 1.0987384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1223829512531392422}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 54.399, y: -42.301, z: -158.632}
+  m_LocalEulerAnglesHint: {x: 54.399, y: 53.079, z: -158.632}
 --- !u!135 &-5294428587141004228
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -214,11 +214,11 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &6104540753482077240
+--- !u!114 &7460796691520655986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,7 +227,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7707252764822558261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee60c6a6c6886d144a634d352ba0c579, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b873a97c79df8e488cb8ed6b7981c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  speed: 4
   knockbackForce: 100
