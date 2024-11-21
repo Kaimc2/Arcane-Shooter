@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     public AudioClip impactClip;
 
     [Header("Projectile Properties")]
-    public float damage = 0f;
+    public int damage = 0;
     public float speed = 0f;
 
     void Awake()

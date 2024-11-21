@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class WeaponController : MonoBehaviour
 {
     public Transform[] weapons;
+    public UIManager uiManager;
 
     public InputActionReference numberInput;
     public InputActionReference scrollInput;
@@ -32,6 +33,9 @@ public class WeaponController : MonoBehaviour
                 Debug.LogWarning($"No staff script found on {weapons[i].name}");
             }
         }
+
+        // Initialize the mana UI
+        uiManager.UpdateMana(_weaponScripts[_currentWeaponIndex].maxMana);
     }
 
     void OnEnable()
@@ -105,6 +109,9 @@ public class WeaponController : MonoBehaviour
     private void SetCurrentWeaponFiringAction()
     {
         Staff weapon = _weaponScripts[_currentWeaponIndex];
+        weapon.isRecharging = false;
+        uiManager.UpdateMana(weapon.mana);
+
         if (weapon != null)
         {
             _currentFireAction = ctx => weapon.Fire();

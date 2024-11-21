@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fireball : Projectile
 {
     private bool _hasCollision = false;
+    // private float _blastRadius = 2f;
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,12 +14,23 @@ public class Fireball : Projectile
 
         Debug.Log($"Fireball hit {other.gameObject.name}");
 
+        if (other.CompareTag("Player"))
+        {
+            PlayerManager playerManager = other.GetComponent<PlayerManager>();
+            playerManager.TakeDamage(damage);
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+            AIController aiController = other.GetComponent<AIController>();
+            aiController.TakeDamage(damage);
+        }
+
         // Play impact sound effect 
-        if (impactClip) audioSource.PlayOneShot(impactClip);
+        if (impactClip != null) audioSource.PlayOneShot(impactClip);
 
         // Disable collider to avoid further collision 
         Collider collider = GetComponent<Collider>();
-        if (collider) collider.enabled = false;
+        if (collider != null) collider.enabled = false;
 
         // Stop and Clear any particles
         ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();
@@ -30,7 +42,7 @@ public class Fireball : Projectile
 
         // Stop projectile movement
         Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb) rb.velocity = Vector3.zero;
+        if (rb != null) rb.velocity = Vector3.zero;
 
         Destroy(gameObject, impactClip.length);
     }

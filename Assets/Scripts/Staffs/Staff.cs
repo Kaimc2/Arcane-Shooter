@@ -8,24 +8,34 @@ using UnityEngine.InputSystem;
 
 public abstract class Staff : MonoBehaviour
 {
-  [Header("Element Settings")]
+  [Header("References")]
   public Transform projectilePrefab;  // Reference to the projectile object
   public Transform projectileSpawnPosition; // Reference to the projectile spawn location
   public LayerMask projectileColliderLayerMask;
-  public float cooldown = 0f;
-  protected float lastFireTime = 0f;
-  public bool isOnCooldown = false;
+  public WeaponController weaponController;
+
+  [Header("Staff Settings")]
+  public float maxMana = 100f;
+  public float mana;
+  public float manaCost;
+  public float rechargeSpeed;
+  public float cooldown;
+  public bool isOnCooldown;
+  public bool isRecharging;
+  protected float lastFireTime;
 
   [Header("SFX Properties")]
   public AudioSource audioSource;
   public AudioClip fireClip;
 
-  void Start()
+  void Awake()
   {
     audioSource = GetComponent<AudioSource>();
+    mana = maxMana;
   }
 
   public abstract void Fire();
+  public virtual void AIFire(Transform target) { }
   public virtual void StopFire() { }
 
   /// <summary>
