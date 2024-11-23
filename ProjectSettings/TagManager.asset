@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - Enemy
+  - Ally
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Projectile Collider
   - Player
   - Enemy
-  - 
+  - Ally
   - 
   - 
   - 

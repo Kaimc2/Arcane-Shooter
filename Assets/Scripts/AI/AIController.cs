@@ -36,12 +36,13 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         _weaponController = GetComponent<AIWeaponController>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
         if (_isDead) return;
+
+        FindTarget();
 
         // Check for sight and attack range
         isInSight = Physics.CheckSphere(transform.position, sightRange, targetLayer);
@@ -52,6 +53,38 @@ public class AIController : MonoBehaviour
         if (isInSight && isInAttackRange) Attack();
 
         animator.SetFloat("Speed", agent.velocity.magnitude);
+    }
+
+    private void FindTarget()
+    {
+        target = null;
+
+        // Look for potential targets within sight
+        Collider[] targetsInRange = Physics.OverlapSphere(transform.position, sightRange, targetLayer);
+
+        Transform closestTarget = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (Collider potentialTarget in targetsInRange)
+        {
+            // Skip if the potential target is this object
+            if (potentialTarget.transform == transform) continue;
+
+            // Calculate the distance to potential target 
+            float distance = Vector3.Distance(transform.position, potentialTarget.transform.position);
+
+            // Update target to the closest one
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTarget = potentialTarget.transform;
+            }
+        }
+
+        if (closestTarget != null)
+        {
+            target = closestTarget;
+        }
     }
 
     private void Wander()
@@ -67,7 +100,7 @@ public class AIController : MonoBehaviour
         }
 
         // Check if the agent has reached its destination
-        if (_isWalkPointSet && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             Debug.Log($"{gameObject.name} reached walkpoint");
             _isWalkPointSet = false;
@@ -94,8 +127,6 @@ public class AIController : MonoBehaviour
     {
         // Stop moving
         agent.SetDestination(transform.position);
-
-        // transform.LookAt(target);
 
         if (!_alreadyAttacked)
         {
@@ -147,7 +178,6 @@ public class AIController : MonoBehaviour
 
         _isDead = true;
 
-        // Could destroy the object
-        // Destroy(gameObject, 3f);
+        gameObject.layer = 0;
     }
 }

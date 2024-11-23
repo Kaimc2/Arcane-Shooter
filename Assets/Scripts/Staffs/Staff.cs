@@ -38,6 +38,35 @@ public abstract class Staff : MonoBehaviour
   public virtual void AIFire(Transform target) { }
   public virtual void StopFire() { }
 
+  public void RechargeStaff()
+  {
+    if (isRecharging) return;
+
+    isRecharging = true;
+    // Debug.Log("Reloading");
+    StartCoroutine(RechargeCoroutine());
+  }
+
+  private IEnumerator RechargeCoroutine()
+  {
+    float rechargeDuration = rechargeSpeed;
+    float elapsed = 0f;
+
+    while (elapsed < rechargeDuration)
+    {
+      mana = Mathf.RoundToInt(Mathf.Lerp(mana, maxMana, elapsed / rechargeDuration));
+      if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana);
+      elapsed += Time.deltaTime;
+      yield return null;
+    }
+
+    mana = maxMana;
+    if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana);
+    // Debug.Log("Finish reloading");
+
+    isRecharging = false;
+  }
+
   /// <summary>
   /// Calculates the aim direction based on mouse position and spawn position.
   /// </summary>

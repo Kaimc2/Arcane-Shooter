@@ -58,6 +58,8 @@ MonoBehaviour:
     type: 3}
   fireInput: {fileID: -1817538125473598607, guid: b5a5a109ab70b7245b1263b86246830b,
     type: 3}
+  reloadInput: {fileID: 6950791696043231694, guid: b5a5a109ab70b7245b1263b86246830b,
+    type: 3}
 --- !u!1 &221097724718244920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1239,7 @@ MonoBehaviour:
   cooldown: 1
   isOnCooldown: 0
   isRecharging: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 6273398051469873175}
   fireClip: {fileID: 8300000, guid: 4e8a3ccb19850eb4f9c5411c07e40007, type: 3}
 --- !u!82 &6273398051469873175
 AudioSource:

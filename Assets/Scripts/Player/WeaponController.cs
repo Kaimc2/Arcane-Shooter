@@ -12,6 +12,7 @@ public class WeaponController : MonoBehaviour
     public InputActionReference numberInput;
     public InputActionReference scrollInput;
     public InputActionReference fireInput;
+    public InputActionReference reloadInput;
 
     private int _currentWeaponIndex = 0;
     private Staff[] _weaponScripts;
@@ -54,6 +55,13 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         _scrollAxis = scrollInput.action.ReadValue<Vector2>();
+
+        // Reload weapon
+        if (reloadInput.action.IsPressed())
+        {
+            Staff currentStaff = GetCurrentWeapon();
+            if (currentStaff.mana < currentStaff.maxMana) currentStaff.RechargeStaff(); 
+        }
 
         // Switch weapon by numbers
         if (numberInput.action.IsPressed())
