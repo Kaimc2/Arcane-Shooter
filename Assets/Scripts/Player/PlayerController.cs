@@ -21,93 +21,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _movement;
     private Vector3 _velocity;
-    private Vector3 _worldMousePosition = Vector3.zero;
-
-    [Header("Elements Effects")]
-    public GameObject lightningVFXPrefab;
-
-    private GameObject activeLightningVFX;
-    private Coroutine fireCoroutine; // To manage rapid fire
 
     void Start()
     {
         _playerController = GetComponent<CharacterController>();
         _playerMovement = GetComponent<PlayerAnimator>();
     }
-
-    // void OnEnable()
-    // {
-    //     fireInput.action.started += StartFiring;
-    //     fireInput.action.canceled += StopFiring;
-    // }
-
-    // void OnDisable()
-    // {
-    //     fireInput.action.started -= StartFiring;
-    //     fireInput.action.canceled -= StopFiring;
-    // }
-
-    // private void Fire(InputAction.CallbackContext context)
-    // {
-    //     Vector3 aimDir = (_worldMousePosition - projectileSpawnPosition.position).normalized;
-    //     Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-    // }
-
-    // private void StartFiring(InputAction.CallbackContext context)
-    // {
-    //     if (fireCoroutine == null)
-    //     {
-    //         fireCoroutine = StartCoroutine(FireContinuously());
-    //     }
-
-    //     // Spawn VFX
-    //     if (activeLightningVFX == null)
-    //     {
-    //         activeLightningVFX = Instantiate(lightningVFXPrefab, projectileSpawnPosition.position, Quaternion.identity);
-    //         activeLightningVFX.transform.parent = projectileSpawnPosition;
-    //     }
-    // }
-
-    // private void StopFiring(InputAction.CallbackContext context)
-    // {
-    //     if (fireCoroutine != null)
-    //     {
-    //         StopCoroutine(fireCoroutine);
-    //         fireCoroutine = null;
-    //     }
-
-    //     // Destroy VFX
-    //     if (activeLightningVFX != null)
-    //     {
-    //         Destroy(activeLightningVFX);
-    //         activeLightningVFX = null;
-    //     }
-    // }
-
-    // private IEnumerator FireContinuously()
-    // {
-    //     while (true)
-    //     {
-    //         FireProjectile();
-    //         yield return new WaitForSeconds(0.2f); // Adjust the fire rate as needed
-    //     }
-    // }
-
-    // private void FireProjectile()
-    // {
-    //     // Calculate direction
-    //     Vector3 aimDir = (_worldMousePosition - projectileSpawnPosition.position).normalized;
-
-    //     // Instantiate projectile
-    //     Transform projectile = Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-
-    //     // Add Rigidbody force
-    //     Rigidbody rb = projectile.GetComponent<Rigidbody>();
-    //     if (rb != null)
-    //     {
-    //         rb.AddForce(aimDir * 20f, ForceMode.Impulse); // Adjust speed as needed
-    //     }
-    // }
 
     void Update()
     {
@@ -120,12 +39,6 @@ public class PlayerController : MonoBehaviour
         }
 
         Move();
-
-        // Update VFX position
-        // if (activeLightningVFX != null)
-        // {
-        //     activeLightningVFX.transform.position = projectileSpawnPosition.position;
-        // }
     }
 
     private void Move()

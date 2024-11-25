@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,11 +8,13 @@ using UnityEngine.InputSystem;
 public class PlayerAnimator : MonoBehaviour
 {
     private PlayerControls playerControls; // Generated new Input action C# class
+    public WeaponController weaponController;
     private Animator _animator;
 
     private InputAction _moveAction;
     private InputAction _runAction;
     private InputAction _jumpAction;
+    private InputAction _fireAction;
 
     public bool IsSprinting { get { return _runAction.IsPressed(); } }
     public bool IsJumping { get { return _jumpAction.WasPerformedThisFrame(); } }
@@ -24,6 +27,7 @@ public class PlayerAnimator : MonoBehaviour
         _moveAction = playerControls.FindAction("Move");
         _runAction = playerControls.FindAction("Sprint");
         _jumpAction = playerControls.FindAction("Jump");
+        _fireAction = playerControls.FindAction("Fire");
     }
 
     private void Start()
@@ -35,7 +39,6 @@ public class PlayerAnimator : MonoBehaviour
     {
         // Enable player controls
         playerControls?.Enable();
-
     }
 
     private void OnDisable()
@@ -49,6 +52,7 @@ public class PlayerAnimator : MonoBehaviour
         WalkAnimation();
         RunAnimation();
         JumpAnimation();
+        FireAnimation();
     }
 
     private void WalkAnimation()
@@ -84,6 +88,20 @@ public class PlayerAnimator : MonoBehaviour
         else if (_jumpAction.WasReleasedThisFrame())
         {
             _animator.SetBool("isJumping", false);
+        }
+    }
+
+    private void FireAnimation()
+    {
+        Staff currentStaff = weaponController.GetCurrentWeapon();
+
+        if (_fireAction.WasPressedThisFrame() && !currentStaff.isOnCooldown)
+        {
+            _animator.SetBool("isFiring", true);
+        }
+        else if (_fireAction.WasReleasedThisFrame() && !currentStaff.isOnCooldown)
+        {
+            _animator.SetBool("isFiring", false);
         }
     }
 }

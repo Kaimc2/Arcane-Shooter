@@ -1,16 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class FireStaff : Staff
 {
-  private float _lastFireTime = 0f;
+  public override void Fire()
+  {
+    Vector3 aimDir = GetAimDirection();
+    FiringLogic(aimDir);
+  }
 
-  public override void Fire(Vector3 worldMousePosition)
+  public override void AIFire(Transform target)
+  {
+    Vector3 aiAimDir = (target.position - projectileSpawnPosition.position).normalized;
+    FiringLogic(aiAimDir);
+  }
+
+  private void FiringLogic(Vector3 aimDir)
   {
     if (projectilePrefab == null || projectileSpawnPosition == null)
     {
@@ -18,13 +25,27 @@ public class FireStaff : Staff
       return;
     }
 
-    Vector3 aimDir = (worldMousePosition - projectileSpawnPosition.position).normalized;
+    if (isRecharging) return;
 
-    // Check if enough time passed since last shot 
-    if (Time.time > _lastFireTime + cooldown)
+    if (mana >= manaCost)
     {
-      _lastFireTime = Time.time;
+      // Check if enough time passed since last shot 
+      isOnCooldown = Time.time < lastFireTime + cooldown;
+      if (isOnCooldown) return;
+      lastFireTime = Time.time;
+
+      // Spawn the fireball
+      // TODO: if performance is needed consider pooling
       Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+      mana -= manaCost;
+      if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana);
+
+      // Play sound effect
+      if (fireClip) audioSource.PlayOneShot(fireClip);
+    }
+    else
+    {
+      RechargeStaff();
     }
   }
 }
