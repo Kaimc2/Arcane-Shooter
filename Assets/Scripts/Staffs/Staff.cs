@@ -54,7 +54,7 @@ public abstract class Staff : MonoBehaviour
 
     while (elapsed < rechargeDuration)
     {
-      mana = Mathf.RoundToInt(Mathf.Lerp(mana, maxMana, elapsed / rechargeDuration));
+      mana = Mathf.Lerp(mana, maxMana, elapsed / rechargeDuration * Time.deltaTime);
       if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana);
       elapsed += Time.deltaTime;
       yield return null;

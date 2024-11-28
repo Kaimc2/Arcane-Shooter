@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 7167632716756133239}
   - component: {fileID: 9207837868342633958}
   - component: {fileID: 3203053540460727517}
+  - component: {fileID: -1218233851711326539}
   m_Layer: 9
   m_Name: Ally
   m_TagString: Ally
@@ -462,6 +463,18 @@ MonoBehaviour:
   attackRange: 5
   isInSight: 0
   isInAttackRange: 0
+--- !u!114 &-1218233851711326539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578319872482338553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b53e3740adff44cb7d3b17ef565156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &580055560609692046
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,11 @@ using UnityEngine;
 public class Fireball : Projectile
 {
     public GameObject explosionVFX;
+    public float damageOverTime = 10f;
+    public float duration = 5f;
     public float blastRadius = 5f;
     public float force = 700f;
+
     private readonly Collider[] _hitTargets = new Collider[10];
     private bool _hasCollision = false;
 
@@ -31,17 +34,21 @@ public class Fireball : Projectile
             }
 
             // Apply damage
+            Burn burnEffect = explosionTarget.AddComponent<Burn>();
+            burnEffect.Initialize(explosionTarget.gameObject, "Fire", damageOverTime, duration);
             if (explosionTarget.CompareTag("Player"))
             {
                 PlayerManager playerManager = explosionTarget.GetComponent<PlayerManager>();
                 playerManager.TakeDamage(damage);
+
+                ReactionManager.ApplyEffect(explosionTarget.gameObject, burnEffect);
             }
             else if (explosionTarget.CompareTag("Enemy") || explosionTarget.CompareTag("Ally"))
             {
                 AIController aiController = explosionTarget.GetComponent<AIController>();
                 aiController.TakeDamage(damage);
+                ReactionManager.ApplyEffect(explosionTarget.gameObject, burnEffect);
             }
-
         }
 
         Debug.Log($"Fireball hit {other.gameObject.name}");
@@ -49,6 +56,13 @@ public class Fireball : Projectile
         // Play impact sound effect 
         if (impactClip != null) audioSource.PlayOneShot(impactClip);
 
+        Cleanup();
+
+        Destroy(gameObject, impactClip.length);
+    }
+
+    private void Cleanup()
+    {
         // Disable properties after collision 
         Collider collider = GetComponent<Collider>();
         if (collider != null) collider.enabled = false;
@@ -62,7 +76,5 @@ public class Fireball : Projectile
 
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null) rb.velocity = Vector3.zero;
-
-        Destroy(gameObject, impactClip.length);
     }
 }
