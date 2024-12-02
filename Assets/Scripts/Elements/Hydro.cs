@@ -17,10 +17,11 @@ public class Hydro : Projectile
 
             ReactionManager.ApplyEffect(other.gameObject, wetEffect);
         }
-        else if (other.CompareTag("Enemy") || other.CompareTag("Ally"))
+        else if (other.CompareTag("Enemy") || other.CompareTag("NPC"))
         {
             AIController aiController = other.GetComponent<AIController>();
             aiController.TakeDamage(damage);
+
             ReactionManager.ApplyEffect(other.gameObject, wetEffect);
         }
 

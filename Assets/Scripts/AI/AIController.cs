@@ -36,6 +36,8 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         _weaponController = GetComponent<AIWeaponController>();
+
+        health = maxHealth;
     }
 
     void Update()

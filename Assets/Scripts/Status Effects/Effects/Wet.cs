@@ -13,7 +13,7 @@ public class Wet : StatusEffect
     public override void AddEffect()
     {
         Debug.Log($"{target.name} is wet");
-        // Instantiate the burn effect
+        // Instantiate the wet effect
     }
 
     public override void UpdateEffect()
@@ -28,7 +28,7 @@ public class Wet : StatusEffect
                 // PlayerManager playerManager = target.GetComponent<PlayerManager>();
                 // playerManager.TakeDamage(damagePerSecond * Time.deltaTime);
             }
-            else if (target.CompareTag("Enemy") || target.CompareTag("Ally"))
+            else if (target.CompareTag("Enemy") || target.CompareTag("NPC"))
             {
                 // AIController aiController = target.GetComponent<AIController>();
                 // aiController.TakeDamage(damagePerSecond * Time.deltaTime);

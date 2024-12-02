@@ -18,7 +18,8 @@ public class ReactionManager : MonoBehaviour
             Debug.Log($"Reaction key: {reactionKey}");
 
             // Check for reaction from the database
-            if (ReactionDatabase.Reactions.TryGetValue(reactionKey, out Action<GameObject, StatusEffect, StatusEffect> reactionAction))
+            // if (ReactionDatabase.Reactions.TryGetValue(reactionKey, out Action<GameObject, StatusEffect, StatusEffect> reactionAction))
+            if (ReactionDatabase.Instance.Reactions.TryGetValue(reactionKey, out Action<GameObject, StatusEffect, StatusEffect> reactionAction))
             {
                 reactionAction.Invoke(target, activeEffect, newEffect);
                 return; // Stop further action when a reaction occurs

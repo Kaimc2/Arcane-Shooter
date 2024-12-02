@@ -6,12 +6,13 @@ using UnityEngine;
 public class Fireball : Projectile
 {
     public GameObject explosionVFX;
+    public GameObject burningVFX;
     public float damageOverTime = 10f;
     public float duration = 5f;
     public float blastRadius = 5f;
     public float force = 700f;
 
-    private readonly Collider[] _hitTargets = new Collider[10];
+    private readonly Collider[] _hitTargets = new Collider[20];
     private bool _hasCollision = false;
 
     void OnTriggerEnter(Collider other)
@@ -35,7 +36,7 @@ public class Fireball : Projectile
 
             // Apply damage
             Burn burnEffect = explosionTarget.AddComponent<Burn>();
-            burnEffect.Initialize(explosionTarget.gameObject, "Fire", damageOverTime, duration);
+            burnEffect.Initialize(explosionTarget.gameObject, burningVFX, "Fire", damageOverTime, duration);
             if (explosionTarget.CompareTag("Player"))
             {
                 PlayerManager playerManager = explosionTarget.GetComponent<PlayerManager>();
@@ -43,10 +44,11 @@ public class Fireball : Projectile
 
                 ReactionManager.ApplyEffect(explosionTarget.gameObject, burnEffect);
             }
-            else if (explosionTarget.CompareTag("Enemy") || explosionTarget.CompareTag("Ally"))
+            else if (explosionTarget.CompareTag("Enemy") || explosionTarget.CompareTag("NPC"))
             {
                 AIController aiController = explosionTarget.GetComponent<AIController>();
                 aiController.TakeDamage(damage);
+
                 ReactionManager.ApplyEffect(explosionTarget.gameObject, burnEffect);
             }
         }
