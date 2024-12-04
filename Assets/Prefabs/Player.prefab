@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2610849028522595287}
   - component: {fileID: 416079086336352366}
+  - component: {fileID: 2715114468364369717}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -60,6 +61,22 @@ MonoBehaviour:
     type: 3}
   reloadInput: {fileID: 6950791696043231694, guid: b5a5a109ab70b7245b1263b86246830b,
     type: 3}
+--- !u!114 &2715114468364369717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204682336801117122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe9aac5c71edb442bd2a060597cf0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIManager: {fileID: 0}
+  animator: {fileID: 0}
+  maxHealth: 200
+  health: 0
 --- !u!1 &221097724718244920
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +740,7 @@ GameObject:
   - component: {fileID: 8656516989113388563}
   m_Layer: 7
   m_Name: Magician_RIO
-  m_TagString: Untagged
+  m_TagString: Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1704,7 +1721,7 @@ GameObject:
   - component: {fileID: 1993494301016663485}
   m_Layer: 7
   m_Name: Cloak
-  m_TagString: Untagged
+  m_TagString: Cloak
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

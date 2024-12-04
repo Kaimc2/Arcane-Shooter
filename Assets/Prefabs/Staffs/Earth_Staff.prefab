@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb026bc184888c4dbaf215b14d5257f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6496672675037705954, guid: 5ae0e655b2b355c4d83aead3e50ea630,
+  projectilePrefab: {fileID: 1230102139262065720, guid: 0dcf12fa7d243814299df495d1a60e14,
     type: 3}
   projectileSpawnPosition: {fileID: 7659702271073633019}
   projectileColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 9
   weaponController: {fileID: 0}
   maxMana: 5
   mana: 0

@@ -88,4 +88,22 @@ public abstract class Staff : MonoBehaviour
 
     return (worldMousePosition - projectileSpawnPosition.position).normalized;
   }
+
+  protected Vector3 GetAimDirectionGround()
+  {
+    Vector3 worldMousePosition;
+
+    Vector2 screenCenterPoint = new(Screen.width / 2f, Screen.height / 2f);
+    Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+    if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, projectileColliderLayerMask))
+    {
+      worldMousePosition = raycastHit.point;
+    }
+    else
+    {
+      worldMousePosition = ray.GetPoint(10);
+    }
+
+    return worldMousePosition;
+  }
 }

@@ -7,6 +7,9 @@ TagManager:
   - Projectile
   - Enemy
   - NPC
+  - Ally
+  - Cloak
+  - Model
   layers:
   - Default
   - TransparentFX
