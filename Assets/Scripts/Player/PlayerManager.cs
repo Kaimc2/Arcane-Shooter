@@ -8,8 +8,8 @@ public class PlayerManager : MonoBehaviour
     public Animator animator;
 
     [Header("Player Stats")]
-    public int maxHealth = 200;
-    public int health;
+    public float maxHealth = 200f;
+    public float health;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         uIManager.UpdateHealth(health);
@@ -30,7 +30,13 @@ public class PlayerManager : MonoBehaviour
     private void Die()
     {
         Debug.Log("You Died");
-        
+
         if (animator != null) animator.SetBool("isDead", true);
+
+        // Disable further inputs 
+        // gameObject.GetComponent<PlayerController>().enabled = false;
+        // gameObject.GetComponentInParent<WeaponController>().enabled = false;
+        
+        gameObject.layer = 0;
     }
 }

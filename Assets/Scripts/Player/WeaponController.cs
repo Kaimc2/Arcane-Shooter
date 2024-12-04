@@ -111,7 +111,7 @@ public class WeaponController : MonoBehaviour
         fireInput.action.performed += _currentFireAction;
         fireInput.action.canceled += _currentStopFireAction;
 
-        Debug.Log($"Current Weapon: {weapons[_currentWeaponIndex].name}");
+        // Debug.Log($"Current Weapon: {weapons[_currentWeaponIndex].name}");
     }
 
     private void SetCurrentWeaponFiringAction()

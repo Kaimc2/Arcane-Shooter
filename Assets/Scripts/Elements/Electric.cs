@@ -5,6 +5,7 @@ using UnityEngine;
 public class Electric : Projectile
 {
     public float knockbackForce = 5f; // Knockback force to apply
+    public float duration = 5f;
 
     void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,24 @@ public class Electric : Projectile
         if (rb != null)
         {
             Debug.Log("Hit object: " + other.name);
+
+            // Apply damage
+            Shock shockEffect = other.gameObject.AddComponent<Shock>();
+            shockEffect.Initialize(other.gameObject, "Electric", duration);
+            if (other.CompareTag("Player"))
+            {
+                PlayerManager playerManager = other.GetComponent<PlayerManager>();
+                playerManager.TakeDamage(damage);
+
+                ReactionManager.ApplyEffect(other.gameObject, shockEffect);
+            }
+            else if (other.CompareTag("Enemy") || other.CompareTag("NPC"))
+            {
+                AIController aiController = other.GetComponent<AIController>();
+                aiController.TakeDamage(damage);
+
+                ReactionManager.ApplyEffect(other.gameObject, shockEffect);
+            }
 
             // Calculate knockback direction
             Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
