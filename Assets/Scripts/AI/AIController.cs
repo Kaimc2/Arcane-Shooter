@@ -36,6 +36,8 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         _weaponController = GetComponent<AIWeaponController>();
+
+        health = maxHealth;
     }
 
     void Update()
@@ -154,12 +156,12 @@ public class AIController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (_isDead) return;
 
         health -= damage;
-        Debug.Log($"{gameObject.name} has remaining {health} health");
+        // Debug.Log($"{gameObject.name} has remaining {health} health");
 
         if (health <= 0) Die();
     }

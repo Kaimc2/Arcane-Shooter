@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class Rock : Projectile
 {
-    void OnTriggerEnter(Collider other)
+    public float duration = 5f;
+    private float _startTime = 0f;
+
+    void Start()
     {
-        Debug.Log($"Rock hit {other.gameObject.name}");
-        Destroy(gameObject);
+        _startTime = Time.time;
     }
+
+    void Update()
+    {
+        if (Time.time > duration + _startTime)
+        {
+            Debug.Log("Should Destroy");
+            Destroy(gameObject);
+        }
+    }   
 }

@@ -23,9 +23,4 @@ public class Projectile : MonoBehaviour
     {
         _projectileRigidbody.velocity = transform.forward * speed;
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Destroy(gameObject);
-    }
 }

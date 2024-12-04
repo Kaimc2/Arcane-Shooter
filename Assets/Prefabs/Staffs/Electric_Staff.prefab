@@ -134,7 +134,7 @@ MonoBehaviour:
   projectileSpawnPosition: {fileID: 3412885921504137123}
   projectileColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 9
   weaponController: {fileID: 0}
   maxMana: 100
   mana: 0
