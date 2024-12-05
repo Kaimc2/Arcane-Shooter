@@ -13,7 +13,6 @@ public class ElectricStaff : Staff
   [Header("Elements Effects")]
   public GameObject lightningVFXPrefab;
   private GameObject activeLightningVFX;
-  private Coroutine fireCoroutine; // To manage rapid fire
 
   void Update()
   {
@@ -32,10 +31,8 @@ public class ElectricStaff : Staff
       return;
     }
 
-    if (fireCoroutine == null)
-    {
-      fireCoroutine = StartCoroutine(FireContinuously());
-    }
+    // Fire a single projectile
+    FireProjectile();
 
     // Spawn VFX
     if (activeLightningVFX == null)
@@ -47,26 +44,11 @@ public class ElectricStaff : Staff
 
   private void StopFiring(InputAction.CallbackContext context)
   {
-    if (fireCoroutine != null)
-    {
-      StopCoroutine(fireCoroutine);
-      fireCoroutine = null;
-    }
-
     // Destroy VFX
     if (activeLightningVFX != null)
     {
       Destroy(activeLightningVFX);
       activeLightningVFX = null;
-    }
-  }
-
-  private IEnumerator FireContinuously()
-  {
-    while (true)
-    {
-      FireProjectile();
-      yield return new WaitForSeconds(cooldown);
     }
   }
 

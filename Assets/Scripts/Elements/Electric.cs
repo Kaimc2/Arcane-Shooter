@@ -10,19 +10,23 @@ public class Electric : Projectile
     {
         Debug.Log($"Electric hit {other.gameObject.name}");
 
+        Debug.Log($"Playing sound {impactClip}");
+        // Play impact sound
+        if (impactClip != null) audioSource.PlayOneShot(impactClip);
+
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            Debug.Log("Hit object: " + other.name);
+            Debug.Log("Electric Hit object: " + other.name);
 
-            // Calculate knockback direction
-            Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+            // // Calculate knockback direction
+            // Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
 
-            // Apply force
-            rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+            // // Apply force
+            // rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
 
-            // Optionally set velocity for dramatic movement
-            rb.velocity = knockbackDirection * knockbackForce;
+            // // Optionally set velocity for dramatic movement
+            // rb.velocity = knockbackDirection * knockbackForce;
         }
 
         Destroy(gameObject);
