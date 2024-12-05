@@ -104,7 +104,7 @@ public class AIController : MonoBehaviour
         // Check if the agent has reached its destination
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            Debug.Log($"{gameObject.name} reached walkpoint");
+            // Debug.Log($"{gameObject.name} reached walkpoint");
             _isWalkPointSet = false;
         }
     }
@@ -169,6 +169,7 @@ public class AIController : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{gameObject.name} died");
+        GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
 
         if (agent != null && !_isDead)
         {
@@ -179,7 +180,8 @@ public class AIController : MonoBehaviour
         if (animator != null && !_isDead) animator.SetBool("isDead", true);
 
         _isDead = true;
-
         gameObject.layer = 0;
+
+        Destroy(gameObject, 5f);
     }
 }
