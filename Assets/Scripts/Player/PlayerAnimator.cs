@@ -10,6 +10,7 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerControls playerControls; // Generated new Input action C# class
     public WeaponController weaponController;
     private Animator _animator;
+    private PlayerController _playerController;
 
     private InputAction _moveAction;
     private InputAction _runAction;
@@ -33,6 +34,7 @@ public class PlayerAnimator : MonoBehaviour
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -49,6 +51,9 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (_playerController.isDead) return;
+
+        // Play animation
         WalkAnimation();
         RunAnimation();
         JumpAnimation();

@@ -65,6 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfe2183af5bd4e48980267e6b059280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winCondition: 3
+  uIManager: {fileID: 0}
   wizards:
   - {fileID: 0}
   - {fileID: 0}

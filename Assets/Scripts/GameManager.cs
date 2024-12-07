@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RespawnPlayer();
         RespawnTeam(playerTeam.members, playerTeam.spawnPoints, Wizard.NPC, playerTeam.modelMat, playerTeam.cloakMat);
         RespawnTeam(enemyTeam.members, enemyTeam.spawnPoints, Wizard.Enemy, enemyTeam.modelMat, enemyTeam.cloakMat);
         CheckWinner();
@@ -89,6 +90,28 @@ public class GameManager : MonoBehaviour
         }
 
         ApplyTeamMat(team, modelMat, cloakMat);
+    }
+
+    private void RespawnPlayer()
+    {
+        if (playerTeam.members[0] == null)
+        {
+            playerTeam.members[0] = Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation);
+        }
+
+        // Apply the team texture to player
+        Dictionary<string, Material> materialMap = new()
+        {
+            {"Model", playerTeam.modelMat},
+            {"Cloak", playerTeam.cloakMat},
+        };
+        foreach (Renderer skin in playerTeam.members[0].GetComponentsInChildren<Renderer>())
+        {
+            if (materialMap.TryGetValue(skin.tag, out Material material))
+            {
+                skin.material = material;
+            }
+        }
     }
 
     private void GenerateTeam()
@@ -187,7 +210,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

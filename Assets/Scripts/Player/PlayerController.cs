@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Properties")]
     public float speed = 4f;
     public float jumpHeight = 3f;
+    public bool isDead;
     private readonly float _gravity = -9.81f;
 
     [Header("Collision Settings")]
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        _movement = movementInput.action.ReadValue<Vector2>();
+        if (!isDead) _movement = movementInput.action.ReadValue<Vector2>();
         _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (_isGrounded && _velocity.y < 0)
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Handle jumping
-        if (_playerMovement.IsJumping && _isGrounded)
+        if (_playerMovement.IsJumping && _isGrounded && !isDead)
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity);
         }
