@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class Electric : Projectile
 {
+    public GameObject lightningStrikeVFXPrefab;
     public float knockbackForce = 5f; // Knockback force to apply
     public float duration = 5f;
+
+    private bool _hasCollision = false;
 
     void OnTriggerEnter(Collider other)
     {
         Debug.Log($"Electric hit {other.gameObject.name}");
 
+        GameObject lightningStrike = Instantiate(lightningStrikeVFXPrefab, transform.position, transform.rotation);
+        Destroy(lightningStrike, 2f);
+
+        // Play impact sound effect 
+        if (impactClip != null) audioSource.PlayOneShot(impactClip);
+
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            Debug.Log("Hit object: " + other.name);
+            Debug.Log("Electric Hit object: " + other.name);
+
+            // Play impact sound effect 
+            if (impactClip != null) audioSource.PlayOneShot(impactClip);
 
             // Apply damage
             Shock shockEffect = other.gameObject.AddComponent<Shock>();
             shockEffect.Initialize(other.gameObject, "Electric", duration);
+
             if (other.CompareTag("Player"))
             {
                 PlayerManager playerManager = other.GetComponent<PlayerManager>();

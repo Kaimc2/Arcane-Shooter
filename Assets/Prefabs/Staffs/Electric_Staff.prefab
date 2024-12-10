@@ -134,19 +134,17 @@ MonoBehaviour:
   projectileSpawnPosition: {fileID: 3412885921504137123}
   projectileColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 777
   weaponController: {fileID: 0}
   maxMana: 100
-  mana: 0
-  manaCost: 4
-  rechargeSpeed: 1
-  cooldown: 0
+  mana: 100
+  manaCost: 10
+  rechargeSpeed: 3
+  cooldown: 2
   isOnCooldown: 0
   isRecharging: 0
   audioSource: {fileID: 0}
-  fireClip: {fileID: 0}
-  lightningVFXPrefab: {fileID: 7707252764822558261, guid: 28c536491af91034b9439b638af378d0,
-    type: 3}
+  fireClip: {fileID: 8300000, guid: b330aa4a56d46ef46a9d7d401478f00c, type: 3}
 --- !u!82 &7063808092129471717
 AudioSource:
   m_ObjectHideFlags: 0
