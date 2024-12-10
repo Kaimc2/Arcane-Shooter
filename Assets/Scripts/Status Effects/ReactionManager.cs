@@ -14,11 +14,10 @@ public class ReactionManager : MonoBehaviour
         foreach (StatusEffect activeEffect in activeEffects)
         {
             // Create the reaction key. E.g. Fire+Water
-            string reactionKey = activeEffect.type + "+" + newEffect.type;
+            string reactionKey = ReactionDatabase.NormalizeKey(activeEffect.type, newEffect.type);
             Debug.Log($"Reaction key: {reactionKey}");
 
             // Check for reaction from the database
-            // if (ReactionDatabase.Reactions.TryGetValue(reactionKey, out Action<GameObject, StatusEffect, StatusEffect> reactionAction))
             if (ReactionDatabase.Instance.Reactions.TryGetValue(reactionKey, out Action<GameObject, StatusEffect, StatusEffect> reactionAction))
             {
                 reactionAction.Invoke(target, activeEffect, newEffect);

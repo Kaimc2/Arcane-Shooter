@@ -40,12 +40,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Move();
+        Jump();
     }
 
     private void Move()
     {
         Vector3 move = transform.right * _movement.x + transform.forward * _movement.y;
-        _playerController.Move(speed * Time.deltaTime * move);
 
         // Handle sprinting
         if (_playerMovement.IsSprinting && _isGrounded)
@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
             speed = 4f;
         }
 
+        if (!isDead) _playerController.Move(speed * Time.deltaTime * move);
+    }
+
+    private void Jump()
+    {
         // Handle jumping
         if (_playerMovement.IsJumping && _isGrounded && !isDead)
         {
@@ -65,5 +70,10 @@ public class PlayerController : MonoBehaviour
 
         _velocity.y += _gravity * Time.deltaTime;
         _playerController.Move(_velocity * Time.deltaTime);
+    }
+
+    public void ApplyJumpForce(float force)
+    {
+        _velocity.y = force;
     }
 }

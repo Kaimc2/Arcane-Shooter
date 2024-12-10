@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 7425587957859261956}
   m_Layer: 8
   m_Name: weapon_slot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1408,6 +1408,7 @@ MonoBehaviour:
   - {fileID: 473364599651156570}
   - {fileID: 6382762683666168386}
   - {fileID: 5869612648595282949}
+  switchInterval: 10
 --- !u!114 &4694604222365859131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,6 +1439,8 @@ MonoBehaviour:
   attackRange: 5
   isInSight: 0
   isInAttackRange: 0
+  jumpHeight: 1.5
+  jumpInterval: 20
 --- !u!1 &5432680473461974054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,7 +2518,7 @@ GameObject:
   - component: {fileID: 4417261716222090360}
   m_Layer: 8
   m_Name: hand.r
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2608,6 +2611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870976643119429151, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8501842691435383818, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
         type: 3}
@@ -2783,6 +2791,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8254918476628262828, guid: 79163fcef0fff8e44991847ae04d4205,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2816,6 +2829,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159817769813711981, guid: b69728960ed62c147a6f129bd5f0719c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7098865202548331802, guid: b69728960ed62c147a6f129bd5f0719c,
         type: 3}
@@ -2991,6 +3009,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7762329760500100867, guid: de29a6ccd48d59a44a32c3cc82b4837d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3030,6 +3053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259193378096950159, guid: 83eea15b53a4722488a4116c444a7520,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4340838885575139710, guid: 83eea15b53a4722488a4116c444a7520,
         type: 3}

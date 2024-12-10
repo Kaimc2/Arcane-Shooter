@@ -173,6 +173,7 @@ MonoBehaviour:
   - {fileID: 7504528250253395951}
   - {fileID: 3059919909544041044}
   - {fileID: 7422991993438679853}
+  switchInterval: 10
 --- !u!114 &2798275982721003975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +204,8 @@ MonoBehaviour:
   attackRange: 5
   isInSight: 0
   isInAttackRange: 0
+  jumpHeight: 1.5
+  jumpInterval: 20
 --- !u!1 &243593351484673952
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +858,7 @@ GameObject:
   - component: {fileID: 1385844269078073287}
   m_Layer: 9
   m_Name: weapon_slot
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1886,7 +1889,7 @@ GameObject:
   - component: {fileID: 1511975391595871907}
   m_Layer: 9
   m_Name: hand.r
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1986,7 +1989,7 @@ GameObject:
   - component: {fileID: 546702331173528994}
   m_Layer: 9
   m_Name: Model
-  m_TagString: Enemy
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2564,6 +2567,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3159817769813711981, guid: b69728960ed62c147a6f129bd5f0719c,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
     - target: {fileID: 7098865202548331802, guid: b69728960ed62c147a6f129bd5f0719c,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2667,6 +2675,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259193378096950159, guid: 83eea15b53a4722488a4116c444a7520,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 4340838885575139710, guid: 83eea15b53a4722488a4116c444a7520,
         type: 3}
@@ -2842,6 +2855,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7762329760500100867, guid: de29a6ccd48d59a44a32c3cc82b4837d,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2926,6 +2944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870976643119429151, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     - target: {fileID: 8501842691435383818, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
         type: 3}
@@ -3100,6 +3123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254918476628262828, guid: 79163fcef0fff8e44991847ae04d4205,
+        type: 3}
+      propertyPath: m_TagString
+      value: NPC
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

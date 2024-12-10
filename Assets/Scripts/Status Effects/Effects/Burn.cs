@@ -46,6 +46,7 @@ public class Burn : StatusEffect
         }
         else
         {
+            Destroy(burnObject);
             RemoveEffect();
         }
     }
@@ -56,7 +57,6 @@ public class Burn : StatusEffect
         Debug.Log($"{target.name} is no longer burning");
 
         // Clean effect
-        Destroy(burnObject);
         Destroy(this);
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - Model
   - GameOver
   - Pause
+  - Ground
   layers:
   - Default
   - TransparentFX

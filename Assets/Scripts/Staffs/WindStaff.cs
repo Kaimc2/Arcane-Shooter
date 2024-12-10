@@ -8,9 +8,18 @@ using UnityEngine.InputSystem;
 
 public class WindStaff : Staff
 {
-  private float _lastFireTime = 0f;
-
   public override void Fire()
+  {
+    Vector3 aimDir = GetAimDirectionGround();
+    FiringLogic(aimDir);
+  }
+
+  public override void AIFire(Transform target)
+  {
+    FiringLogic(target.position);
+  }
+
+  private void FiringLogic(Vector3 aimDir)
   {
     if (projectilePrefab == null || projectileSpawnPosition == null)
     {
@@ -18,16 +27,26 @@ public class WindStaff : Staff
       return;
     }
 
-    Vector3 aimDir = GetAimDirection();
+    if (isRecharging) return;
 
-    // Check if enough time passed since last shot 
-    if (Time.time < _lastFireTime + cooldown)
+    if (mana >= manaCost)
     {
-      return;
+      // Check if enough time passed since last shot 
+      isOnCooldown = Time.time < lastFireTime + cooldown;
+      if (isOnCooldown) return;
+      lastFireTime = Time.time;
+
+      Instantiate(projectilePrefab, aimDir, Quaternion.LookRotation(aimDir, Vector3.up));
+      mana -= manaCost;
+      if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana);
+
+      // Play sound effect
+      if (fireClip) audioSource.PlayOneShot(fireClip);
     }
-
-    _lastFireTime = Time.time;
-
-    Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+    else
+    {
+      RechargeStaff();
+    }
   }
+
 }

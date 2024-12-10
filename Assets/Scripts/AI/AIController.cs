@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +11,7 @@ public class AIController : MonoBehaviour
     public Animator animator;
     public LayerMask targetLayer, groundLayer;
     private AIWeaponController _weaponController;
+    private Rigidbody _agentRb;
 
     [Header("Patrolling Properties")]
     public Vector3 walkPoint;
@@ -29,15 +29,22 @@ public class AIController : MonoBehaviour
     public float attackRange;
     public bool isInSight;
     public bool isInAttackRange;
+    public float jumpHeight = 1.5f;
     private bool _isDead = false;
+    public float jumpInterval = 30f;
+    private float _nextJumpTime;
+    private bool _isJumping;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         _weaponController = GetComponent<AIWeaponController>();
+        _agentRb = GetComponent<Rigidbody>();
 
         health = maxHealth;
+        agent.stoppingDistance = attackRange;
+        _nextJumpTime = Time.time + Random.Range(jumpInterval - 3f, jumpInterval + 3f);
     }
 
     void Update()
@@ -53,6 +60,12 @@ public class AIController : MonoBehaviour
         if (!isInSight && !isInAttackRange) Wander();
         if (isInSight && !isInAttackRange) Chase();
         if (isInSight && isInAttackRange) Attack();
+
+        // Handle Jumping
+        if (!_isJumping && Time.time > _nextJumpTime)
+        {
+            Jump(jumpHeight);
+        }
 
         animator.SetFloat("Speed", agent.velocity.magnitude);
     }
@@ -140,12 +153,45 @@ public class AIController : MonoBehaviour
             }
 
             _alreadyAttacked = true;
+            animator.SetTrigger("Attack");
             Invoke(nameof(ResetAttack), timeBetweenAttack);
         }
     }
     private void ResetAttack()
     {
         _alreadyAttacked = false;
+    }
+
+    public void Jump(float force)
+    {
+        if (_isJumping) return;
+
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+        agent.isStopped = true;
+
+        _isJumping = true;
+
+        // Apply upward force
+        _agentRb.AddRelativeForce(Vector3.up * force, ForceMode.Impulse);
+        // _agentRb.AddRelativeForce(Vector3.forward * 200, ForceMode.Impulse);
+
+        _nextJumpTime = Time.time + Random.Range(jumpInterval - 3f, jumpInterval + 3f);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (_isJumping)
+            {
+                _isJumping = false;
+                _agentRb.velocity = Vector3.zero;
+
+                agent.updateRotation = true;
+                agent.updatePosition = true;
+                agent.isStopped = false;
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()

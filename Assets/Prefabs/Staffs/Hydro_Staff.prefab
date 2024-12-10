@@ -112,6 +112,7 @@ MonoBehaviour:
   cooldown: 0
   isOnCooldown: 0
   isRecharging: 0
+  weight: 1.5
   audioSource: {fileID: 0}
   fireClip: {fileID: 0}
 --- !u!82 &2501632240108823793

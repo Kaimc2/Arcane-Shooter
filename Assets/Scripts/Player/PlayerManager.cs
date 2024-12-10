@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
 
         if (health <= 0 && !_alreadyDead)
         {
+            uIManager.UpdateHealth(0f);
             _alreadyDead = true;
             Die();
         }
@@ -38,7 +39,11 @@ public class PlayerManager : MonoBehaviour
         // Update the enemy team score
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
 
-        if (animator != null) animator.SetBool("isDead", true);
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.SetBool("isDead", true);
+        }
 
         // Disable further inputs 
         gameObject.GetComponent<PlayerController>().isDead = true;

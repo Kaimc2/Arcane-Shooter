@@ -100,11 +100,11 @@ public class PlayerAnimator : MonoBehaviour
     {
         Staff currentStaff = weaponController.GetCurrentWeapon();
 
-        if (_fireAction.WasPressedThisFrame() && !currentStaff.isOnCooldown)
+        if (_fireAction.WasPressedThisFrame() && !currentStaff.isOnCooldown && !currentStaff.isRecharging)
         {
             _animator.SetBool("isFiring", true);
         }
-        else if (_fireAction.WasReleasedThisFrame() && !currentStaff.isOnCooldown)
+        else if (_fireAction.WasReleasedThisFrame())
         {
             _animator.SetBool("isFiring", false);
         }

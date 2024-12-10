@@ -22,6 +22,7 @@ public abstract class Staff : MonoBehaviour
   public float cooldown;
   public bool isOnCooldown;
   public bool isRecharging;
+  public float weight;  // This is used for AI weapon selection
   protected float lastFireTime;
 
   [Header("SFX Properties")]

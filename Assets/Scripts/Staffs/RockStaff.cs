@@ -1,34 +1,52 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine.Utility;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class RockStaff : Staff
 {
-  private float _lastFireTime = 5f;
-
   public override void Fire()
   {
-    if (projectilePrefab == null || projectileSpawnPosition == null)
-    {
-      Debug.LogWarning("Projectile or spawn location not assigned");
-      return;
-    }
-
     Vector3 aimDir = GetAimDirectionGround();
+    FiringLogic(aimDir);
+  }
 
-    // Check if enough time passed since last shot 
-    if (Time.time < _lastFireTime + cooldown)
+  public override void AIFire(Transform target)
+  {
+    Vector3 midpoint = (transform.position + target.position) / 2;
+    midpoint.y = 0;
+
+    FiringLogic(midpoint);
+  }
+
+  private void FiringLogic(Vector3 aimDir)
+  {
+    if (projectilePrefab == null)
     {
+      Debug.LogWarning("Projectile not assigned");
       return;
     }
 
-    _lastFireTime = Time.time;
+    if (isRecharging) return;
 
-    Instantiate(projectilePrefab, aimDir, Quaternion.LookRotation(aimDir, Vector3.up));
+    if (mana >= manaCost)
+    {
+      // Check if enough time passed since last shot 
+      isOnCooldown = Time.time < lastFireTime + cooldown;
+      if (isOnCooldown) return;
+      lastFireTime = Time.time;
+
+      // Spawn the rock wall 
+      Instantiate(projectilePrefab, aimDir, Quaternion.identity);
+      mana -= manaCost;
+      if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana);
+
+      // Play sound effect
+      if (fireClip) audioSource.PlayOneShot(fireClip);
+    }
+    else
+    {
+      RechargeStaff();
+    }
   }
 }

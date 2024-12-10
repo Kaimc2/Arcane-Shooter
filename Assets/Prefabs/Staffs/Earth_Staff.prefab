@@ -109,9 +109,10 @@ MonoBehaviour:
   mana: 0
   manaCost: 1
   rechargeSpeed: 2
-  cooldown: 0
+  cooldown: 5
   isOnCooldown: 0
   isRecharging: 0
+  weight: 0.5
   audioSource: {fileID: 0}
   fireClip: {fileID: 0}
 --- !u!82 &7575057053243093792

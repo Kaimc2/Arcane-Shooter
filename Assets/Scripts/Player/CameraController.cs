@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    private PlayerController _playerController;
     public float mouseSensitivity = 80f;
     public Transform playerBody;
     public Transform playerHead;
@@ -15,6 +16,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        _playerController = GetComponentInParent<PlayerController>();
     }
 
     void Update()
@@ -30,13 +32,15 @@ public class CameraController : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         // Calculate the camera rotation and set the rotation limits
-        _xRotation -= mouseY;
+        _xRotation = _playerController.isDead ? 0f : _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -50f, 40f);
 
         // Rotate the player to follow the mouse position
-        playerBody.Rotate(Vector3.up * mouseX);
+        if (!_playerController.isDead) playerBody.Rotate(Vector3.up * mouseX);
 
-        // Rotate the camera to smoothly rotate around the player
-        transform.rotation = Quaternion.Euler(_xRotation, playerBody.eulerAngles.y, 0);
+        // Rotate the camera smoothly 
+        transform.rotation = _playerController.isDead 
+            ? Quaternion.Euler(_xRotation, 90, 0) 
+            : Quaternion.Euler(_xRotation, playerBody.eulerAngles.y, 0);
     }
 }
