@@ -62,10 +62,10 @@ public class AIController : MonoBehaviour
         if (isInSight && isInAttackRange) Attack();
 
         // Handle Jumping
-        if (!_isJumping && Time.time > _nextJumpTime)
-        {
-            Jump(jumpHeight);
-        }
+        // if (!_isJumping && Time.time > _nextJumpTime)
+        // {
+        //     Jump(jumpHeight);
+        // }
 
         animator.SetFloat("Speed", agent.velocity.magnitude);
     }

@@ -9,12 +9,12 @@ public class Electric : Projectile
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Electric hit {other.gameObject.name}");
+        // Debug.Log($"Electric hit {other.gameObject.name}");
 
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            Debug.Log("Hit object: " + other.name);
+            // Debug.Log("Hit object: " + other.name);
 
             // Apply damage
             Shock shockEffect = other.gameObject.AddComponent<Shock>();

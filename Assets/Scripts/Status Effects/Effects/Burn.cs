@@ -18,7 +18,7 @@ public class Burn : StatusEffect
 
     public override void AddEffect()
     {
-        Debug.Log($"{target.name} is burning");
+        // Debug.Log($"{target.name} is burning");
 
         // Instantiate the burn effect
         burnObject = Instantiate(burnVFX, target.transform.position, target.transform.rotation);
@@ -54,7 +54,7 @@ public class Burn : StatusEffect
     public override void RemoveEffect()
     {
         isExpired = true;
-        Debug.Log($"{target.name} is no longer burning");
+        // Debug.Log($"{target.name} is no longer burning");
 
         // Clean effect
         Destroy(this);

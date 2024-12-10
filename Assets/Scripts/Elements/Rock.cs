@@ -16,7 +16,6 @@ public class Rock : Projectile
     {
         if (Time.time > duration + _startTime)
         {
-            Debug.Log("Should Destroy");
             Destroy(gameObject);
         }
     }   

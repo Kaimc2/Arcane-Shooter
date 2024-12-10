@@ -24,7 +24,6 @@ public class Wind : Projectile
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Wind hit {other.gameObject.name}");
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerController playerController = other.GetComponent<PlayerController>();

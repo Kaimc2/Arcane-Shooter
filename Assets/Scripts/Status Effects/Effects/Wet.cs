@@ -12,7 +12,7 @@ public class Wet : StatusEffect
 
     public override void AddEffect()
     {
-        Debug.Log($"{target.name} is wet");
+        // Debug.Log($"{target.name} is wet");
         // Instantiate the wet effect
     }
 
@@ -43,7 +43,7 @@ public class Wet : StatusEffect
 
     public override void RemoveEffect()
     {
-        Debug.Log($"{target.name} is no longer wet");
+        // Debug.Log($"{target.name} is no longer wet");
         // Clean effect
 
         Destroy(this);

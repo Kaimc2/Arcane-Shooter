@@ -62,7 +62,7 @@ public class AIWeaponController : MonoBehaviour
                 }
                 _weaponScripts[_currentWeaponIndex].isRecharging = false;
 
-                Debug.Log($"{gameObject.name} switch weapon to {_weaponScripts[_currentWeaponIndex]}");
+                // Debug.Log($"{gameObject.name} switch weapon to {_weaponScripts[_currentWeaponIndex]}");
                 break;
             }
         }
