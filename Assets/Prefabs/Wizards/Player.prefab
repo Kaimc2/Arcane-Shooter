@@ -708,6 +708,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInput: {fileID: -3733762882605048583, guid: b5a5a109ab70b7245b1263b86246830b,
     type: 3}
+  uiManager: {fileID: 0}
+  maxStamina: 10
+  stamina: 10
   speed: 4
   jumpHeight: 1.5
   isDead: 0
@@ -2106,7 +2109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61591ac763b7684b87628aabca837c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 80
   playerBody: {fileID: 2207519917808887866}
   playerHead: {fileID: 5515636615826320181}
   offsets: {x: 0, y: 0.15, z: 0.15}

@@ -36,7 +36,8 @@ public class WeaponController : MonoBehaviour
         }
 
         // Initialize the mana UI
-        uiManager.UpdateMana(_weaponScripts[_currentWeaponIndex].maxMana);
+        uiManager.UpdateMana(_weaponScripts[_currentWeaponIndex].maxMana, _weaponScripts[_currentWeaponIndex].maxMana);
+        uiManager.UpdateWeaponUI(_weaponScripts[_currentWeaponIndex].gameObject.name);
     }
 
     void OnEnable()
@@ -60,7 +61,7 @@ public class WeaponController : MonoBehaviour
         if (reloadInput.action.IsPressed())
         {
             Staff currentStaff = GetCurrentWeapon();
-            if (currentStaff.mana < currentStaff.maxMana) currentStaff.RechargeStaff(); 
+            if (currentStaff.mana < currentStaff.maxMana) currentStaff.RechargeStaff();
         }
 
         // Switch weapon by numbers
@@ -105,6 +106,7 @@ public class WeaponController : MonoBehaviour
         }
 
         _currentWeaponIndex = weaponIndex;
+        uiManager.UpdateWeaponUI(_weaponScripts[weaponIndex].gameObject.name);
 
         // Subscribe to the selected weapon's Fire function 
         SetCurrentWeaponFiringAction();
@@ -118,7 +120,7 @@ public class WeaponController : MonoBehaviour
     {
         Staff weapon = _weaponScripts[_currentWeaponIndex];
         weapon.isRecharging = false;
-        uiManager.UpdateMana(weapon.mana);
+        uiManager.UpdateMana(weapon.mana, weapon.maxMana);
 
         if (weapon != null)
         {

@@ -1078,6 +1078,11 @@ PrefabInstance:
       objectReference: {fileID: 418013640}
     - target: {fileID: 1495546032253292339, guid: 58cb00c678c44c14587afcb6420352dc,
         type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 418013640}
+    - target: {fileID: 1495546032253292339, guid: 58cb00c678c44c14587afcb6420352dc,
+        type: 3}
       propertyPath: winCondition
       value: 5
       objectReference: {fileID: 0}
@@ -3160,6 +3165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8810925509676323907, guid: f7917795456c42c49a361f955392c656,
         type: 3}
+      propertyPath: GameHub
+      value: 
+      objectReference: {fileID: 2101877617}
+    - target: {fileID: 8810925509676323907, guid: f7917795456c42c49a361f955392c656,
+        type: 3}
       propertyPath: menuInput
       value: 
       objectReference: {fileID: -3185681487446403807, guid: b5a5a109ab70b7245b1263b86246830b,
@@ -3470,10 +3480,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelDropdown: {fileID: 0}
-  winAmount: {fileID: 0}
   levelImages: []
   currentLevelImg: {fileID: 0}
+  winAmount: {fileID: 0}
   winAmountUI: {fileID: 0}
+  loaderCanvas: {fileID: 0}
+  bgImage: {fileID: 0}
+  progressBar: {fileID: 0}
 --- !u!4 &473951359
 Transform:
   m_ObjectHideFlags: 0
@@ -69634,6 +69647,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2801830790269995757, guid: 63604ffa829797541a1b80fbdf2dd245, type: 3}
+--- !u!1 &2101877617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6121681652658302715, guid: f7917795456c42c49a361f955392c656,
+    type: 3}
+  m_PrefabInstance: {fileID: 418013639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2102148499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82469,6 +82488,16 @@ PrefabInstance:
       propertyPath: uIManager
       value: 
       objectReference: {fileID: 418013640}
+    - target: {fileID: 2715114468364369717, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
+        type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 418013640}
+    - target: {fileID: 3235378985321141198, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
+        type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 418013640}
     - target: {fileID: 3235378985321141198, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
         type: 3}
       propertyPath: jumpHeight
@@ -82482,6 +82511,11 @@ PrefabInstance:
     - target: {fileID: 5100799425461344342, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
         type: 3}
       propertyPath: uIManager
+      value: 
+      objectReference: {fileID: 418013640}
+    - target: {fileID: 5100799425461344342, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
+        type: 3}
+      propertyPath: uiManager
       value: 
       objectReference: {fileID: 418013640}
     m_RemovedComponents: []

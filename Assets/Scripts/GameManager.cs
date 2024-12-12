@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOver;
 
     [Header("Object References")]
-    public UIManager uIManager;
+    public UIManager uiManager;
     public GameObject[] wizards;
     public List<GameObject> blueTeam;
     public List<GameObject> redTeam;
@@ -61,8 +61,6 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-
-        Debug.Log($"The Win Condition is {winCondition}");
     }
 
     // Start is called before the first frame update
@@ -98,6 +96,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerTeam.members[0] == null)
         {
+            uiManager.GameHub.SetActive(true);
             playerTeam.members[0] = Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation);
         }
 
@@ -140,6 +139,7 @@ public class GameManager : MonoBehaviour
         );
 
         // Add player to their team
+        uiManager.GameHub.SetActive(true);
         playerTeam.members.Add(Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation));
 
         // Add NPCs to player team
@@ -186,12 +186,12 @@ public class GameManager : MonoBehaviour
         if (isEnemy)
         {
             playerTeam.score++;
-            uIManager.UpdateScore(playerTeam.color, playerTeam.score);
+            uiManager.UpdateScore(playerTeam.color, playerTeam.score);
         }
         else
         {
             enemyTeam.score++;
-            uIManager.UpdateScore(enemyTeam.color, enemyTeam.score);
+            uiManager.UpdateScore(enemyTeam.color, enemyTeam.score);
         }
     }
 
@@ -204,11 +204,11 @@ public class GameManager : MonoBehaviour
 
             if (playerTeam.score > enemyTeam.score)
             {
-                uIManager.ToggleGameOverPanel($"{playerTeam.color} Team Win!");
+                uiManager.ToggleGameOverPanel($"{playerTeam.color} Team Win!");
             }
             else
             {
-                uIManager.ToggleGameOverPanel($"{enemyTeam.color} Team Win!");
+                uiManager.ToggleGameOverPanel($"{enemyTeam.color} Team Win!");
             }
         }
     }

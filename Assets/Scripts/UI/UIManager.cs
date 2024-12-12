@@ -14,8 +14,12 @@ public class UIManager : MonoBehaviour
     private InputActionMap uiMap;
 
     [Header("Player Stats")]
-    public TextMeshProUGUI healthAmount;
-    public TextMeshProUGUI manaAmount;
+    public Image healthAmount;
+    public Image staminaAmount;
+    public Image manaAmount;
+    public Image currentWeaponImage;
+    public TextMeshProUGUI currentWeapon;
+    public Image cooldownOverlay;
 
     [Header("Score")]
     public TextMeshProUGUI blueScoreUI;
@@ -26,6 +30,7 @@ public class UIManager : MonoBehaviour
     public Transform levelSelectPanel;
     public Transform settingsPanel;
     public Transform gameOverPanel;
+    public GameObject GameHub;
 
     [Header("Panel Properties")]
     public TextMeshProUGUI gameOverMessage;
@@ -54,14 +59,29 @@ public class UIManager : MonoBehaviour
         ToggleSettings();
     }
 
-    public void UpdateMana(float mana)
+    public void UpdateMana(float mana, float maxMana)
     {
-        manaAmount.text = mana.ToString();
+        manaAmount.fillAmount = Mathf.Clamp01(mana / maxMana);
     }
 
-    public void UpdateHealth(float health)
+    public void UpdateHealth(float health, float maxHealth)
     {
-        healthAmount.text = health.ToString();
+        healthAmount.fillAmount = Mathf.Clamp01(health / maxHealth);
+    }
+
+    public void UpdateStamina(float stamina, float maxStamina)
+    {
+        staminaAmount.fillAmount = Mathf.Clamp01(stamina / maxStamina);
+    }
+
+    public void UpdateWeaponUI(string weaponName)
+    {
+        currentWeapon.text = string.Join(" ", weaponName.Split('_'));
+    }
+
+    public void UpdateCooldownOverlay(float duration, float maxDuration)
+    {
+        cooldownOverlay.fillAmount = Mathf.Clamp01(duration / maxDuration);
     }
 
     public void ToggleGameOverPanel(string message)

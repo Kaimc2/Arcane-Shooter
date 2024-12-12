@@ -41,7 +41,7 @@ public class Electric : Projectile
             rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
 
             // Optionally set velocity for dramatic movement
-            rb.velocity = knockbackDirection * knockbackForce;
+            // rb.velocity = knockbackDirection * knockbackForce;
         }
 
         Destroy(gameObject);

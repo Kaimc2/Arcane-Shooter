@@ -77,7 +77,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void RunAnimation()
     {
-        if (_runAction.WasPressedThisFrame())
+        if (_runAction.WasPressedThisFrame() && _playerController.stamina > 1)
         {
             _animator.SetBool("isRunning", true);
         }

@@ -104,47 +104,48 @@ using UnityEngine.InputSystem;
 
 public class ElectricStaff : Staff
 {
-  public override void Fire()
-  {
-    Vector3 aimDir = GetAimDirection();
-    FiringLogic(aimDir);
-  }
-
-  public override void AIFire(Transform target)
-  {
-    Vector3 aiAimDir = (target.position - projectileSpawnPosition.position).normalized;
-    FiringLogic(aiAimDir);
-  }
-
-  private void FiringLogic(Vector3 aimDir)
-  {
-    if (projectilePrefab == null || projectileSpawnPosition == null)
+    public override void Fire()
     {
-      Debug.LogWarning("Projectile or spawn location not assigned");
-      return;
+        Vector3 aimDir = GetAimDirection();
+        FiringLogic(aimDir);
     }
 
-    if (isRecharging) return;
-
-    if (mana >= manaCost)
+    public override void AIFire(Transform target)
     {
-      // Check if enough time passed since last shot 
-      isOnCooldown = Time.time < lastFireTime + cooldown;
-      if (isOnCooldown) return;
-      lastFireTime = Time.time;
-
-      // Spawn the electric 
-      // TODO: if performance is needed consider pooling
-      Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-      mana -= manaCost;
-      if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana);
-
-      // Play sound effect
-      if (fireClip) audioSource.PlayOneShot(fireClip);
+        Vector3 aiAimDir = (target.position - projectileSpawnPosition.position).normalized;
+        FiringLogic(aiAimDir);
     }
-    else
+
+    private void FiringLogic(Vector3 aimDir)
     {
-      RechargeStaff();
+        if (projectilePrefab == null || projectileSpawnPosition == null)
+        {
+            Debug.LogWarning("Projectile or spawn location not assigned");
+            return;
+        }
+
+        if (isRecharging) return;
+
+        if (mana >= manaCost)
+        {
+            // Check if enough time passed since last shot 
+            isOnCooldown = Time.time < lastFireTime + cooldown;
+            if (isOnCooldown) return;
+            lastFireTime = Time.time;
+            if (gameObject.CompareTag("Player")) StartCooldown(cooldown);
+
+            // Spawn the electric 
+            // TODO: if performance is needed consider pooling
+            Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            mana -= manaCost;
+            if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana, maxMana);
+
+            // Play sound effect
+            if (fireClip) audioSource.PlayOneShot(fireClip);
+        }
+        else
+        {
+            RechargeStaff();
+        }
     }
-  }
 }
