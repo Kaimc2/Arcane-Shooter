@@ -8,6 +8,7 @@ public class RockStaff : Staff
   public override void Fire()
   {
     Vector3 aimDir = GetAimDirectionGround();
+    Debug.Log(aimDir);
     FiringLogic(aimDir);
   }
 

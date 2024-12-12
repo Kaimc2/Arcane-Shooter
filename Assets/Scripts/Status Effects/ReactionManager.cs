@@ -15,7 +15,7 @@ public class ReactionManager : MonoBehaviour
         {
             // Create the reaction key. E.g. Fire+Water
             string reactionKey = ReactionDatabase.NormalizeKey(activeEffect.type, newEffect.type);
-            Debug.Log($"Reaction key: {reactionKey}");
+            // Debug.Log($"Reaction key: {reactionKey}");
 
             // Check for reaction from the database
             if (ReactionDatabase.Instance.Reactions.TryGetValue(reactionKey, out Action<GameObject, StatusEffect, StatusEffect> reactionAction))

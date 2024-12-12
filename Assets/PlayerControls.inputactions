@@ -67,15 +67,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Menu",
-                    "type": "Button",
-                    "id": "1ca853ab-9855-4932-8c55-65ebebef2965",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -298,10 +289,27 @@
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "fca494ba-d424-41c5-98f3-e347d0dbc208",
+            "actions": [
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "2c0d73ed-69d3-4ddb-9867-6429141fe650",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "24881a04-37eb-4983-836d-e80b16a3838b",
+                    "id": "b5a8ca49-cf09-40cf-b3ea-3e224700034e",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",

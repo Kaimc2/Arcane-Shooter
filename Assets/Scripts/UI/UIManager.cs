@@ -8,7 +8,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public InputActionReference menuInput;
+    public InputActionAsset inputActions;
+    public InputActionReference menuAction;
+    private InputActionMap gameplayMap;
+    private InputActionMap uiMap;
 
     [Header("Player Stats")]
     public TextMeshProUGUI healthAmount;
@@ -18,13 +21,38 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI blueScoreUI;
     public TextMeshProUGUI redScoreUI;
 
-    [Header("Panels")]
+    [Header("Panel References")]
+    public Transform actionPanel;
+    public Transform levelSelectPanel;
+    public Transform settingsPanel;
     public Transform gameOverPanel;
+
+    [Header("Panel Properties")]
     public TextMeshProUGUI gameOverMessage;
-    public Transform menuPanel;
-    public Toggle audioToggle;
-    private bool isMenuOpened;
-    private readonly bool muted;
+    public Slider sensitivitySlider;
+    public TextMeshProUGUI sensitivityAmt;
+
+    private bool isSettingsOpen = false;
+
+    void Start()
+    {
+        if (inputActions != null)
+        {
+            gameplayMap = inputActions.FindActionMap("Player");
+            uiMap = inputActions.FindActionMap("UI");
+
+            gameplayMap.Enable();
+            uiMap.Enable();
+        }
+
+        sensitivityAmt.text = Mathf.Round(CameraController.mouseSensitivity).ToString();
+        sensitivitySlider.value = CameraController.mouseSensitivity;
+    }
+
+    void Update()
+    {
+        ToggleSettings();
+    }
 
     public void UpdateMana(float mana)
     {
@@ -58,17 +86,70 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ToggleMenu()
+    public void OpenLevelSelect()
     {
-        if (menuInput.action.IsPressed())
+        levelSelectPanel.gameObject.SetActive(true);
+        actionPanel.gameObject.SetActive(false);
+    }
+    public void CloseLevelSelect()
+    {
+        actionPanel.gameObject.SetActive(true);
+        levelSelectPanel.gameObject.SetActive(false);
+    }
+
+    public void OpenSettings()
+    {
+        isSettingsOpen = true;
+        settingsPanel.gameObject.SetActive(true);
+        if (actionPanel != null) actionPanel.gameObject.SetActive(false);
+
+        if (gameplayMap != null)
         {
             Cursor.lockState = CursorLockMode.None;
-            menuPanel.gameObject.SetActive(!isMenuOpened);
+            gameplayMap.Disable();
+            PlayerAnimator.active = false;
+        }
+    }
+    public void CloseSettings()
+    {
+        isSettingsOpen = false;
+        if (actionPanel != null) actionPanel.gameObject.SetActive(true);
+        settingsPanel.gameObject.SetActive(false);
+
+        if (gameplayMap != null)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            gameplayMap.Enable();
+            PlayerAnimator.active = true;
+        }
+    }
+    public void ToggleSettings()
+    {
+        if (menuAction == null) return;
+
+        if (menuAction.action.WasPressedThisFrame())
+        {
+            Debug.Log("Open Settings");
+            if (!isSettingsOpen)
+            {
+                gameplayMap.Disable();
+                PlayerAnimator.active = false;
+            }
+            else
+            {
+                gameplayMap.Enable();
+                PlayerAnimator.active = true;
+            }
+            settingsPanel.gameObject.SetActive(!isSettingsOpen);
+
+            isSettingsOpen = !isSettingsOpen;
+            Cursor.lockState = isSettingsOpen ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 
-    public void MuteGame()
+    public void ChangeSensitivity()
     {
-        AudioListener.pause = !muted;
+        CameraController.mouseSensitivity = sensitivitySlider.value;
+        sensitivityAmt.text = Mathf.Round(sensitivitySlider.value).ToString();
     }
 }

@@ -17,6 +17,8 @@ public class PlayerAnimator : MonoBehaviour
     private InputAction _jumpAction;
     private InputAction _fireAction;
 
+    public static bool active = true;
+
     public bool IsSprinting { get { return _runAction.IsPressed(); } }
     public bool IsJumping { get { return _jumpAction.WasPerformedThisFrame(); } }
 
@@ -52,6 +54,7 @@ public class PlayerAnimator : MonoBehaviour
     private void Update()
     {
         if (_playerController.isDead) return;
+        if (!active) return;
 
         // Play animation
         WalkAnimation();

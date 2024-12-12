@@ -35,7 +35,7 @@ public class Team
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public float winCondition;
+    public static float winCondition = 10f;
     private bool isGameOver;
 
     [Header("Object References")]
@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        Debug.Log($"The Win Condition is {winCondition}");
     }
 
     // Start is called before the first frame update

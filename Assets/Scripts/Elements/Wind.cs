@@ -12,6 +12,9 @@ public class Wind : Projectile
     void Start()
     {
         _startTime = Time.time;
+
+        // Play impact sound effect 
+        if (impactClip != null) audioSource.PlayOneShot(impactClip);
     }
 
     void Update()

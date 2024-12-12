@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private PlayerController _playerController;
-    public float mouseSensitivity = 80f;
+    public static float mouseSensitivity = 80f;
     public Transform playerBody;
     public Transform playerHead;
 

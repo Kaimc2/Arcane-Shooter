@@ -10,6 +10,9 @@ public class Rock : Projectile
     void Start()
     {
         _startTime = Time.time;
+
+        // Play impact sound effect 
+        if (impactClip != null) audioSource.PlayOneShot(impactClip);
     }
 
     void Update()
@@ -18,5 +21,5 @@ public class Rock : Projectile
         {
             Destroy(gameObject);
         }
-    }   
+    }
 }

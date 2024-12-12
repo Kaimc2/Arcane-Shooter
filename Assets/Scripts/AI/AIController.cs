@@ -174,7 +174,7 @@ public class AIController : MonoBehaviour
 
         // Apply upward force
         _agentRb.AddRelativeForce(Vector3.up * force, ForceMode.Impulse);
-        // _agentRb.AddRelativeForce(Vector3.forward * 200, ForceMode.Impulse);
+        _agentRb.velocity = Vector3.up * 4;
 
         _nextJumpTime = Time.time + Random.Range(jumpInterval - 3f, jumpInterval + 3f);
     }
