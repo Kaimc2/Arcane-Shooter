@@ -106,14 +106,13 @@ public class ElectricStaff : Staff
 {
     public override void Fire()
     {
-        Vector3 aimDir = GetAimDirection();
+        Vector3 aimDir = GetAimDirectionGround();
         FiringLogic(aimDir);
     }
 
     public override void AIFire(Transform target)
     {
-        Vector3 aiAimDir = (target.position - projectileSpawnPosition.position).normalized;
-        FiringLogic(aiAimDir);
+        FiringLogic(target.position);
     }
 
     private void FiringLogic(Vector3 aimDir)
@@ -136,7 +135,7 @@ public class ElectricStaff : Staff
 
             // Spawn the electric 
             // TODO: if performance is needed consider pooling
-            Instantiate(projectilePrefab, projectileSpawnPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            Instantiate(projectilePrefab, aimDir, Quaternion.identity);
             mana -= manaCost;
             if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana, maxMana);
 

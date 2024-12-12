@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7738e2190ca06d41a38c5e448f7e1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6496672675037705954, guid: e186f9d553aa2ab42b111cbfc1859bc4,
+  projectilePrefab: {fileID: 5122495324394048967, guid: b55a00a167eb0444fa62a8fffb8a81c9,
     type: 3}
   projectileSpawnPosition: {fileID: 703236727385712054}
   projectileColliderLayerMask:
@@ -109,7 +109,7 @@ MonoBehaviour:
   mana: 0
   manaCost: 1
   rechargeSpeed: 1
-  cooldown: 0
+  cooldown: 0.5
   isOnCooldown: 0
   isRecharging: 0
   weight: 1.5
@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 8501842691435383818}
   serializedVersion: 2
   m_LocalRotation: {x: 0.025792912, y: 0.24087852, z: -0.9631852, w: 0.116561554}
-  m_LocalPosition: {x: -0.12882951, y: -1.2044017, z: 0.093655504}
+  m_LocalPosition: {x: -0.71, y: -1.469, z: 0.39}
   m_LocalScale: {x: 1.9821624, y: 1.7439601, z: 1.9153658}
   m_ConstrainProportionsScale: 0
   m_Children: []

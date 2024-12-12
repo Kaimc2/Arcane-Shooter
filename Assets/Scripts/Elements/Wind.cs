@@ -27,6 +27,15 @@ public class Wind : Projectile
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Wind hit {other.gameObject.name}");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            if (playerController != null) playerController.ApplyJumpForce(upwardForce);
+        }
+        else if (other.gameObject.CompareTag("NPC") || other.gameObject.CompareTag("Enemy"))
+        {
+            AIController agent = other.GetComponent<AIController>();
+            if (agent != null) agent.Jump(upwardForce * 60);
+        }
     }
 }

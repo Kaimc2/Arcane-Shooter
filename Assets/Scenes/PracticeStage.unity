@@ -1920,6 +1920,11 @@ PrefabInstance:
       propertyPath: uIManager
       value: 
       objectReference: {fileID: 270113800}
+    - target: {fileID: 2715114468364369717, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
+        type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 270113800}
     - target: {fileID: 3235378985321141198, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
         type: 3}
       propertyPath: uiManager
@@ -1928,6 +1933,11 @@ PrefabInstance:
     - target: {fileID: 5100799425461344342, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
         type: 3}
       propertyPath: uIManager
+      value: 
+      objectReference: {fileID: 270113800}
+    - target: {fileID: 5100799425461344342, guid: 2c6a8605fcd32f642bc8651ee5d3d437,
+        type: 3}
+      propertyPath: uiManager
       value: 
       objectReference: {fileID: 270113800}
     m_RemovedComponents:

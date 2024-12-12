@@ -47,8 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b873a97c79df8e488cb8ed6b7981c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  speed: 5
+  audioSource: {fileID: 0}
+  impactClip: {fileID: 0}
+  damage: 10
+  speed: 0
+  lightningStrikeVFXPrefab: {fileID: 5445126700483575714, guid: 7c0d8d24a3a16db4d80adea72cf3e748,
+    type: 3}
+  knockbackForce: 5
+  duration: 5
 --- !u!65 &5328374437540189769
 BoxCollider:
   m_ObjectHideFlags: 0
