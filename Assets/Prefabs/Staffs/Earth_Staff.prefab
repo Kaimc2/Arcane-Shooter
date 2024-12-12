@@ -103,16 +103,17 @@ MonoBehaviour:
   projectileSpawnPosition: {fileID: 7659702271073633019}
   projectileColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 905
   weaponController: {fileID: 0}
   maxMana: 5
   mana: 0
   manaCost: 1
   rechargeSpeed: 2
-  cooldown: 0
+  cooldown: 5
   isOnCooldown: 0
   isRecharging: 0
-  audioSource: {fileID: 0}
+  weight: 0.5
+  audioSource: {fileID: 7575057053243093792}
   fireClip: {fileID: 0}
 --- !u!82 &7575057053243093792
 AudioSource:

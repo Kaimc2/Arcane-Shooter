@@ -1,34 +1,54 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine.Utility;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class RockStaff : Staff
 {
-  private float _lastFireTime = 5f;
-
-  public override void Fire()
-  {
-    if (projectilePrefab == null || projectileSpawnPosition == null)
+    public override void Fire()
     {
-      Debug.LogWarning("Projectile or spawn location not assigned");
-      return;
+        Vector3 aimDir = GetAimDirectionGround();
+        Debug.Log(aimDir);
+        FiringLogic(aimDir);
     }
 
-    Vector3 aimDir = GetAimDirectionGround();
-
-    // Check if enough time passed since last shot 
-    if (Time.time < _lastFireTime + cooldown)
+    public override void AIFire(Transform target)
     {
-      return;
+        Vector3 midpoint = (transform.position + target.position) / 2;
+        midpoint.y = 0;
+
+        FiringLogic(midpoint);
     }
 
-    _lastFireTime = Time.time;
+    private void FiringLogic(Vector3 aimDir)
+    {
+        if (projectilePrefab == null)
+        {
+            Debug.LogWarning("Projectile not assigned");
+            return;
+        }
 
-    Instantiate(projectilePrefab, aimDir, Quaternion.LookRotation(aimDir, Vector3.up));
-  }
+        if (isRecharging) return;
+
+        if (mana >= manaCost)
+        {
+            // Check if enough time passed since last shot 
+            isOnCooldown = Time.time < lastFireTime + cooldown;
+            if (isOnCooldown) return;
+            lastFireTime = Time.time;
+            if (gameObject.CompareTag("Player")) StartCooldown(cooldown);
+
+            // Spawn the rock wall 
+            Instantiate(projectilePrefab, aimDir, Quaternion.identity);
+            mana -= manaCost;
+            if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana, maxMana);
+
+            // Play sound effect
+            if (fireClip) audioSource.PlayOneShot(fireClip);
+        }
+        else
+        {
+            RechargeStaff();
+        }
+    }
 }

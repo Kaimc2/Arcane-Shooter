@@ -53,7 +53,7 @@ public class Fireball : Projectile
             }
         }
 
-        Debug.Log($"Fireball hit {other.gameObject.name}");
+        // Debug.Log($"Fireball hit {other.gameObject.name}");
 
         // Play impact sound effect 
         if (impactClip != null) audioSource.PlayOneShot(impactClip);

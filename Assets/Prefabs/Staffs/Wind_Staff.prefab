@@ -98,21 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc47b76ee72d5c4da0090d3e1257932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6496672675037705954, guid: 4f25807f79a9187499be3695ce321ce6,
+  projectilePrefab: {fileID: 3423388300971593625, guid: 4b2208e000774f74e8e768f7c415f002,
     type: 3}
   projectileSpawnPosition: {fileID: 588534721151644225}
   projectileColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 905
   weaponController: {fileID: 0}
-  maxMana: 10
+  maxMana: 5
   mana: 0
   manaCost: 1
   rechargeSpeed: 1.5
-  cooldown: 0
+  cooldown: 5
   isOnCooldown: 0
   isRecharging: 0
-  audioSource: {fileID: 0}
+  weight: 1.5
+  audioSource: {fileID: 5652357484025366095}
   fireClip: {fileID: 0}
 --- !u!82 &5652357484025366095
 AudioSource:

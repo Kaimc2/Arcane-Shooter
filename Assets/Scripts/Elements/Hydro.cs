@@ -25,7 +25,7 @@ public class Hydro : Projectile
             ReactionManager.ApplyEffect(other.gameObject, wetEffect);
         }
 
-        Debug.Log($"Water Orb hit {other.gameObject.name}");
+        // Debug.Log($"Water Orb hit {other.gameObject.name}");
         Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ public class Shock : StatusEffect
 
     public override void AddEffect()
     {
-        Debug.Log($"{target.name} is shock");
+        // Debug.Log($"{target.name} is shock");
         // Instantiate the shock effect
     }
 
@@ -43,7 +43,7 @@ public class Shock : StatusEffect
 
     public override void RemoveEffect()
     {
-        Debug.Log($"{target.name} is no longer shock");
+        // Debug.Log($"{target.name} is no longer shock");
         // Clean effect
 
         Destroy(this);

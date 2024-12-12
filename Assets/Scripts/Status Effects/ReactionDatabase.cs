@@ -30,9 +30,14 @@ public class ReactionDatabase : MonoBehaviour
     public void InitializeReaction()
     {
         Reactions = new() {
-            { "Fire+Water", ExtinguishFire },
-            { "Fire+Electric", Overload },
+            { NormalizeKey("Fire", "Water"), ExtinguishFire },
+            { NormalizeKey("Fire", "Electric"), Overload },
         };
+    }
+
+    public static string NormalizeKey(string key1, string key2)
+    {
+        return string.Compare(key1, key2) < 0 ? $"{key1}+{key2}" : $"{key2}+{key1}";
     }
 
     public void ExtinguishFire(GameObject target, StatusEffect fire, StatusEffect water)
@@ -83,6 +88,4 @@ public class ReactionDatabase : MonoBehaviour
         // Play impact sound effect 
         if (impactClip != null) audioSource.PlayOneShot(impactClip);
     }
-
-
 }

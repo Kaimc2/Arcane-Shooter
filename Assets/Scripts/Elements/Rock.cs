@@ -10,14 +10,16 @@ public class Rock : Projectile
     void Start()
     {
         _startTime = Time.time;
+
+        // Play impact sound effect 
+        if (impactClip != null) audioSource.PlayOneShot(impactClip);
     }
 
     void Update()
     {
         if (Time.time > duration + _startTime)
         {
-            Debug.Log("Should Destroy");
             Destroy(gameObject);
         }
-    }   
+    }
 }

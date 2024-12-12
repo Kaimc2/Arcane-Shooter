@@ -10,11 +10,14 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerControls playerControls; // Generated new Input action C# class
     public WeaponController weaponController;
     private Animator _animator;
+    private PlayerController _playerController;
 
     private InputAction _moveAction;
     private InputAction _runAction;
     private InputAction _jumpAction;
     private InputAction _fireAction;
+
+    public static bool active = true;
 
     public bool IsSprinting { get { return _runAction.IsPressed(); } }
     public bool IsJumping { get { return _jumpAction.WasPerformedThisFrame(); } }
@@ -33,6 +36,7 @@ public class PlayerAnimator : MonoBehaviour
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -49,6 +53,10 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (_playerController.isDead) return;
+        if (!active) return;
+
+        // Play animation
         WalkAnimation();
         RunAnimation();
         JumpAnimation();
@@ -69,7 +77,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void RunAnimation()
     {
-        if (_runAction.WasPressedThisFrame())
+        if (_runAction.WasPressedThisFrame() && _playerController.stamina > 1)
         {
             _animator.SetBool("isRunning", true);
         }
@@ -95,11 +103,11 @@ public class PlayerAnimator : MonoBehaviour
     {
         Staff currentStaff = weaponController.GetCurrentWeapon();
 
-        if (_fireAction.WasPressedThisFrame() && !currentStaff.isOnCooldown)
+        if (_fireAction.WasPressedThisFrame() && !currentStaff.isOnCooldown && !currentStaff.isRecharging)
         {
             _animator.SetBool("isFiring", true);
         }
-        else if (_fireAction.WasReleasedThisFrame() && !currentStaff.isOnCooldown)
+        else if (_fireAction.WasReleasedThisFrame())
         {
             _animator.SetBool("isFiring", false);
         }
