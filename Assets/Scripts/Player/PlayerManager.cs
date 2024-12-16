@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Stats")]
     public float maxHealth = 200f;
     public float health;
+    private bool _alreadyDead = false;
 
     [Header("Falling System")]
     [SerializeField] 
@@ -38,8 +39,7 @@ public class PlayerManager : MonoBehaviour
 
     private void CheckFalling()
     {
-        RaycastHit hit;
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f);
 
         if (!isGrounded && !isFalling)
         {
@@ -62,13 +62,13 @@ public class PlayerManager : MonoBehaviour
 
             if (fallDistance < maxFallDistance)
             {
-                TakeDamage(damage);
+                TakeDamage(damage, "fell to their death", "", KillMesssageType.StatusEffect);
             }
             else
             {
                 Debug.Log("Fatal Fall!");
                 health = 0;
-                Die();
+                Die("fell to their death", "", KillMesssageType.StatusEffect);
             }
 
             Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
