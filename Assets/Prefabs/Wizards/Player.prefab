@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7700a7040a37b48a199cab7f9864c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
   weapons:
   - {fileID: 2623102371406080018}
   - {fileID: 5880573663453009415}
   - {fileID: 5343027185270247368}
   - {fileID: 1604427074783364322}
   - {fileID: 7347001481937689036}
-  uiManager: {fileID: 0}
   numberInput: {fileID: 2032917202748807926, guid: b5a5a109ab70b7245b1263b86246830b,
     type: 3}
   scrollInput: {fileID: 508196586363988342, guid: b5a5a109ab70b7245b1263b86246830b,
@@ -73,7 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe9aac5c71edb442bd2a060597cf0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIManager: {fileID: 0}
   animator: {fileID: 0}
   maxHealth: 200
   health: 0
@@ -512,7 +511,7 @@ GameObject:
   - component: {fileID: 3235378985321141198}
   - component: {fileID: 1410727100291729411}
   m_Layer: 7
-  m_Name: Model
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe9aac5c71edb442bd2a060597cf0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIManager: {fileID: 0}
   animator: {fileID: 0}
   maxHealth: 200
   health: 0
@@ -708,7 +706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInput: {fileID: -3733762882605048583, guid: b5a5a109ab70b7245b1263b86246830b,
     type: 3}
-  uiManager: {fileID: 0}
   maxStamina: 10
   stamina: 10
   speed: 4
@@ -3016,6 +3013,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3419897904496761774}
     m_Modifications:
+    - target: {fileID: 703236727385712054, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.898
+      objectReference: {fileID: 0}
+    - target: {fileID: 703236727385712054, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.555
+      objectReference: {fileID: 0}
+    - target: {fileID: 703236727385712054, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 870976643119429151, guid: 9011c3a8b8fae1a4a837d035d8f92a13,
         type: 3}
       propertyPath: m_Name
@@ -3211,6 +3223,21 @@ PrefabInstance:
       propertyPath: projectileSpawnPosition
       value: 
       objectReference: {fileID: 7568874903611696895}
+    - target: {fileID: 5922021072647906919, guid: de29a6ccd48d59a44a32c3cc82b4837d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 5922021072647906919, guid: de29a6ccd48d59a44a32c3cc82b4837d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5922021072647906919, guid: de29a6ccd48d59a44a32c3cc82b4837d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7762329760500100867, guid: de29a6ccd48d59a44a32c3cc82b4837d,
         type: 3}
       propertyPath: m_Name
@@ -3257,6 +3284,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3419897904496761774}
     m_Modifications:
+    - target: {fileID: 3412885921504137123, guid: 79163fcef0fff8e44991847ae04d4205,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.065
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412885921504137123, guid: 79163fcef0fff8e44991847ae04d4205,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412885921504137123, guid: 79163fcef0fff8e44991847ae04d4205,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.384
+      objectReference: {fileID: 0}
     - target: {fileID: 4006848760356638750, guid: 79163fcef0fff8e44991847ae04d4205,
         type: 3}
       propertyPath: m_LocalScale.x

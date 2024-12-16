@@ -1061,8 +1061,10 @@ MonoBehaviour:
   currentWeaponImage: {fileID: 7275082066837781408}
   currentWeapon: {fileID: 6149527332524251169}
   cooldownOverlay: {fileID: 6902807192144909978}
-  blueScoreUI: {fileID: 749836837368064920}
-  redScoreUI: {fileID: 4087799219443436863}
+  playerTeamScoreUI: {fileID: 749836837368064920}
+  playerTeamScoreBG: {fileID: 8227915144934527766}
+  enemyTeamScoreUI: {fileID: 4087799219443436863}
+  enemyTeamScoreBG: {fileID: 2236359175382387840}
   actionPanel: {fileID: 0}
   levelSelectPanel: {fileID: 0}
   settingsPanel: {fileID: 526947754375448014}
@@ -1537,7 +1539,7 @@ GameObject:
   - component: {fileID: 1602350069370403438}
   - component: {fileID: 8227915144934527766}
   m_Layer: 5
-  m_Name: BlueScore
+  m_Name: PlayerScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1848,7 @@ GameObject:
   - component: {fileID: 1372290269306404900}
   - component: {fileID: 2236359175382387840}
   m_Layer: 5
-  m_Name: RedScore
+  m_Name: EnemyScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4224,7 +4226,7 @@ GameObject:
   - component: {fileID: 8972586431596187421}
   - component: {fileID: 749836837368064920}
   m_Layer: 5
-  m_Name: B_Score
+  m_Name: P_Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4567,10 +4569,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7094220327225321100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.022499999, y: 0.5}
-  m_AnchorMax: {x: 0.022499999, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchorMin: {x: 0.03125, y: 0.5}
+  m_AnchorMax: {x: 0.03125, y: 0.5}
+  m_AnchoredPosition: {x: 125, y: 0}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4976754190383681670
 MonoBehaviour:
@@ -4637,7 +4639,7 @@ GameObject:
   - component: {fileID: 2487621667978046679}
   - component: {fileID: 4087799219443436863}
   m_Layer: 5
-  m_Name: R_Score
+  m_Name: E_Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

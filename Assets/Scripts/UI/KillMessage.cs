@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum KillMesssageType {
+    Default,
+    StatusEffect
+}
+
 public class KillMessage : MonoBehaviour
 {
     public TextMeshProUGUI killerDisplay;

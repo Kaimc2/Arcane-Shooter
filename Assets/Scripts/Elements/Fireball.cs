@@ -40,7 +40,7 @@ public class Fireball : Projectile
             if (explosionTarget.CompareTag("Player"))
             {
                 PlayerManager playerManager = explosionTarget.GetComponent<PlayerManager>();
-                playerManager.TakeDamage(damage);
+                playerManager.TakeDamage(damage, "exploded", shooter.name);
 
                 ReactionManager.ApplyEffect(explosionTarget.gameObject, burnEffect);
             }

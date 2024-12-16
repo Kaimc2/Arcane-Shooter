@@ -76,12 +76,12 @@ public class ReactionDatabase : MonoBehaviour
             if (explosionTarget.CompareTag("Player"))
             {
                 PlayerManager playerManager = explosionTarget.GetComponent<PlayerManager>();
-                playerManager.TakeDamage(fireballProperties.damage);
+                playerManager.TakeDamage(fireballProperties.damage, "exploded", "", KillMesssageType.StatusEffect);
             }
             else if (explosionTarget.CompareTag("Enemy") || explosionTarget.CompareTag("NPC"))
             {
                 AIController aiController = explosionTarget.GetComponent<AIController>();
-                aiController.TakeDamage(fireballProperties.damage, "exploded", "");
+                aiController.TakeDamage(fireballProperties.damage, "exploded", "", KillMesssageType.StatusEffect);
             }
         }
 

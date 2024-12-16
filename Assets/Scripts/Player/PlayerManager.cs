@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string damageType, string killer, KillMesssageType type = KillMesssageType.Default)
     {
         health -= damage;
         UIManager.Instance.UpdateHealth(health, maxHealth);
@@ -28,13 +28,20 @@ public class PlayerManager : MonoBehaviour
         if (health <= 0 && !_alreadyDead)
         {
             _alreadyDead = true;
-            Die();
+            Die(damageType, killer, type);
         }
     }
 
-    private void Die()
+    private void Die(string damageType, string killer, KillMesssageType type)
     {
-        // Debug.Log("You Died");
+        if (type == KillMesssageType.Default)
+        {
+            KillFeedManager.Instance.AddNewMessage(killer, damageType, gameObject.name);
+        }
+        else
+        {
+            KillFeedManager.Instance.AddNewMessage(gameObject.name, damageType, "");
+        }
         // Update the enemy team score
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
         UIManager.Instance.GameHub.SetActive(false);

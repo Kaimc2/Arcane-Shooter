@@ -5,13 +5,10 @@ using UnityEngine;
 public class Electric : Projectile
 {
     public GameObject lightningStrikeVFXPrefab;
-    public float knockbackForce = 5f; // Knockback force to apply
     public float duration = 5f;
 
     void OnTriggerEnter(Collider other)
     {
-        // Debug.Log($"Electric hit {other.gameObject.name}");
-
         GameObject lightningStrike = Instantiate(lightningStrikeVFXPrefab, transform.position, transform.rotation);
         Destroy(lightningStrike, 2f);
 
@@ -21,8 +18,6 @@ public class Electric : Projectile
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            // Debug.Log("Electric Hit object: " + other.name);
-
             // Play impact sound effect 
             if (impactClip != null) audioSource.PlayOneShot(impactClip);
 
@@ -33,7 +28,7 @@ public class Electric : Projectile
             if (other.CompareTag("Player"))
             {
                 PlayerManager playerManager = other.GetComponent<PlayerManager>();
-                playerManager.TakeDamage(damage);
+                playerManager.TakeDamage(damage, "electrocuted", shooter.name);
 
                 ReactionManager.ApplyEffect(other.gameObject, shockEffect);
             }
@@ -44,15 +39,6 @@ public class Electric : Projectile
 
                 ReactionManager.ApplyEffect(other.gameObject, shockEffect);
             }
-
-            // // Calculate knockback direction
-            // Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
-
-            // // Apply force
-            // rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
-
-            // // Optionally set velocity for dramatic movement
-            // rb.velocity = knockbackDirection * knockbackForce;
         }
 
         Destroy(gameObject);

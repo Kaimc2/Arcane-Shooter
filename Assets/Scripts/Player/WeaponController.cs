@@ -34,10 +34,13 @@ public class WeaponController : MonoBehaviour
                 Debug.LogWarning($"No staff script found on {weapons[i].name}");
             }
         }
+    }
 
+    void Start()
+    {
         // Initialize the weapon UI
         uiManager.UpdateWeaponUI(_weaponScripts[_currentWeaponIndex].gameObject.name);
-        uiManager.UpdateMana(1, 1);
+        uiManager.UpdateMana(_weaponScripts[_currentWeaponIndex].maxMana, _weaponScripts[_currentWeaponIndex].maxMana);
     }
 
     void OnEnable()

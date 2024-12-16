@@ -25,8 +25,10 @@ public class UIManager : MonoBehaviour
     public Image cooldownOverlay;
 
     [Header("Score")]
-    public TextMeshProUGUI blueScoreUI;
-    public TextMeshProUGUI redScoreUI;
+    public TextMeshProUGUI playerTeamScoreUI;
+    public Image playerTeamScoreBG;
+    public TextMeshProUGUI enemyTeamScoreUI;
+    public Image enemyTeamScoreBG;
 
     [Header("Panel References")]
     public Transform actionPanel;
@@ -105,11 +107,11 @@ public class UIManager : MonoBehaviour
     {
         switch (team)
         {
-            case "Blue":
-                blueScoreUI.text = score.ToString();
+            case "Player":
+                playerTeamScoreUI.text = score.ToString();
                 break;
-            case "Red":
-                redScoreUI.text = score.ToString();
+            case "Enemy":
+                enemyTeamScoreUI.text = score.ToString();
                 break;
             default:
                 break;

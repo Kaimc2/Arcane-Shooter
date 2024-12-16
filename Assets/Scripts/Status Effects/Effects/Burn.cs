@@ -36,12 +36,12 @@ public class Burn : StatusEffect
             if (target.CompareTag("Player"))
             {
                 PlayerManager playerManager = target.GetComponent<PlayerManager>();
-                playerManager.TakeDamage(damagePerSecond * Time.deltaTime);
+                playerManager.TakeDamage(damagePerSecond * Time.deltaTime, "burned to death", "", KillMesssageType.StatusEffect);
             }
             else if (target.CompareTag("Enemy") || target.CompareTag("NPC"))
             {
                 AIController aiController = target.GetComponent<AIController>();
-                aiController.TakeDamage(damagePerSecond * Time.deltaTime, "burned to death", "");
+                aiController.TakeDamage(damagePerSecond * Time.deltaTime, "burned to death", "", KillMesssageType.StatusEffect);
             }
         }
         else
