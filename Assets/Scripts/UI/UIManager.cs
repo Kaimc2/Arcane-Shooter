@@ -77,6 +77,8 @@ public class UIManager : MonoBehaviour
     public void UpdateWeaponUI(string weaponName)
     {
         currentWeapon.text = string.Join(" ", weaponName.Split('_'));
+        currentWeaponImage.sprite = Resources.Load<Sprite>("Images/Staffs/" + weaponName.Split('_')[0]);
+
     }
 
     public void UpdateCooldownOverlay(float duration, float maxDuration)
