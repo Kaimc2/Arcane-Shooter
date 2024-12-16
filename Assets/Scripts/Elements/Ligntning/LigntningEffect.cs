@@ -9,7 +9,7 @@ public class LightningEffect : MonoBehaviour
       Rigidbody rb = other.GetComponent<Rigidbody>();
       if (rb != null)
       {
-          Debug.Log("Hit object: " + other.name);
+          // Debug.Log("Hit object: " + other.name);
 
           // Calculate knockback direction
           Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;

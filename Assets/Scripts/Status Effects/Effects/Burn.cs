@@ -41,7 +41,7 @@ public class Burn : StatusEffect
             else if (target.CompareTag("Enemy") || target.CompareTag("NPC"))
             {
                 AIController aiController = target.GetComponent<AIController>();
-                aiController.TakeDamage(damagePerSecond * Time.deltaTime);
+                aiController.TakeDamage(damagePerSecond * Time.deltaTime, "burned to death", "");
             }
         }
         else

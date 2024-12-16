@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody _projectileRigidbody;
     public AudioSource audioSource;
     public AudioClip impactClip;
+    public GameObject shooter;
 
     [Header("Projectile Properties")]
     public int damage = 0;

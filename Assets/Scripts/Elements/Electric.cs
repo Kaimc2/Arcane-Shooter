@@ -7,11 +7,10 @@ public class Electric : Projectile
     public GameObject lightningStrikeVFXPrefab;
     public float knockbackForce = 5f; // Knockback force to apply
     public float duration = 5f;
-    private bool _hasCollision = false;
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Electric hit {other.gameObject.name}");
+        // Debug.Log($"Electric hit {other.gameObject.name}");
 
         GameObject lightningStrike = Instantiate(lightningStrikeVFXPrefab, transform.position, transform.rotation);
         Destroy(lightningStrike, 2f);
@@ -22,7 +21,7 @@ public class Electric : Projectile
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            Debug.Log("Electric Hit object: " + other.name);
+            // Debug.Log("Electric Hit object: " + other.name);
 
             // Play impact sound effect 
             if (impactClip != null) audioSource.PlayOneShot(impactClip);
@@ -41,19 +40,19 @@ public class Electric : Projectile
             else if (other.CompareTag("Enemy") || other.CompareTag("NPC"))
             {
                 AIController aiController = other.GetComponent<AIController>();
-                aiController.TakeDamage(damage);
+                aiController.TakeDamage(damage, "electrocuted", shooter.name);
 
                 ReactionManager.ApplyEffect(other.gameObject, shockEffect);
             }
 
-            // Calculate knockback direction
-            Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+            // // Calculate knockback direction
+            // Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
 
-            // Apply force
-            rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+            // // Apply force
+            // rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
 
-            // Optionally set velocity for dramatic movement
-            rb.velocity = knockbackDirection * knockbackForce;
+            // // Optionally set velocity for dramatic movement
+            // rb.velocity = knockbackDirection * knockbackForce;
         }
 
         Destroy(gameObject);

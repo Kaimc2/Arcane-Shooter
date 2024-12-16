@@ -202,19 +202,23 @@ public class AIController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string damageType, string killer)
     {
         if (_isDead) return;
 
         health -= damage;
         // Debug.Log($"{gameObject.name} has remaining {health} health");
 
-        if (health <= 0) Die();
+        if (health <= 0)
+        {
+            Die(damageType, killer);
+        }
     }
 
-    private void Die()
+    private void Die(string damageType, string killer)
     {
-        Debug.Log($"{gameObject.name} died");
+        // Debug.Log($"{gameObject.name} died");
+        KillFeedManager.Instance.AddNewMessage(killer, damageType, gameObject.name);
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
 
         if (agent != null && !_isDead)

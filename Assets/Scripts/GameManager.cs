@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     private bool isGameOver;
 
     [Header("Object References")]
-    public UIManager uiManager;
     public GameObject[] wizards;
     public List<GameObject> blueTeam;
     public List<GameObject> redTeam;
@@ -97,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerTeam.members[0] == null)
         {
-            uiManager.GameHub.SetActive(true);
+            UIManager.Instance.GameHub.SetActive(true);
             playerTeam.members[0] = Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation);
         }
 
@@ -140,7 +139,7 @@ public class GameManager : MonoBehaviour
         );
 
         // Add player to their team
-        uiManager.GameHub.SetActive(true);
+        UIManager.Instance.GameHub.SetActive(true);
         playerTeam.members.Add(Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation));
 
         // Add NPCs to player team
@@ -187,12 +186,12 @@ public class GameManager : MonoBehaviour
         if (isEnemy)
         {
             playerTeam.score++;
-            uiManager.UpdateScore(playerTeam.color, playerTeam.score);
+            UIManager.Instance.UpdateScore(playerTeam.color, playerTeam.score);
         }
         else
         {
             enemyTeam.score++;
-            uiManager.UpdateScore(enemyTeam.color, enemyTeam.score);
+            UIManager.Instance.UpdateScore(enemyTeam.color, enemyTeam.score);
         }
     }
 
@@ -205,11 +204,11 @@ public class GameManager : MonoBehaviour
 
             if (playerTeam.score > enemyTeam.score)
             {
-                uiManager.ToggleGameOverPanel($"{playerTeam.color} Team Win!");
+                UIManager.Instance.ToggleGameOverPanel($"{playerTeam.color} Team Win!");
             }
             else
             {
-                uiManager.ToggleGameOverPanel($"{enemyTeam.color} Team Win!");
+                UIManager.Instance.ToggleGameOverPanel($"{enemyTeam.color} Team Win!");
             }
         }
     }

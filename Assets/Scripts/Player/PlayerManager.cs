@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public UIManager uiManager;
     public Animator animator;
 
     [Header("Player Stats")]
@@ -17,14 +16,14 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        uiManager.UpdateHealth(maxHealth, maxHealth);
+        UIManager.Instance.UpdateHealth(maxHealth, maxHealth);
         animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(float damage)
     {
         health -= damage;
-        uiManager.UpdateHealth(health, maxHealth);
+        UIManager.Instance.UpdateHealth(health, maxHealth);
 
         if (health <= 0 && !_alreadyDead)
         {
@@ -35,10 +34,10 @@ public class PlayerManager : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("You Died");
+        // Debug.Log("You Died");
         // Update the enemy team score
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
-        uiManager.GameHub.SetActive(false);
+        UIManager.Instance.GameHub.SetActive(false);
 
         if (animator != null)
         {

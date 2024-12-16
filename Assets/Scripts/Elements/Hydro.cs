@@ -20,7 +20,7 @@ public class Hydro : Projectile
         else if (other.CompareTag("Enemy") || other.CompareTag("NPC"))
         {
             AIController aiController = other.GetComponent<AIController>();
-            aiController.TakeDamage(damage);
+            aiController.TakeDamage(damage, "drowned", shooter.name);
 
             ReactionManager.ApplyEffect(other.gameObject, wetEffect);
         }

@@ -47,7 +47,7 @@ public class Fireball : Projectile
             else if (explosionTarget.CompareTag("Enemy") || explosionTarget.CompareTag("NPC"))
             {
                 AIController aiController = explosionTarget.GetComponent<AIController>();
-                aiController.TakeDamage(damage);
+                aiController.TakeDamage(damage, "exploded", shooter.name);
 
                 ReactionManager.ApplyEffect(explosionTarget.gameObject, burnEffect);
             }

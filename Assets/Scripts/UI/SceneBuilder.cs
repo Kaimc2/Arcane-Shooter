@@ -53,7 +53,6 @@ public class SceneBuilder : MonoBehaviour
     {
         levelIndex = levelDropdown.value;
         currentLevelImg.sprite = levelImages[levelIndex];
-        Debug.Log(levelIndex);
     }
     public void LoadLevelByIndex()
     {

@@ -81,7 +81,7 @@ public class ReactionDatabase : MonoBehaviour
             else if (explosionTarget.CompareTag("Enemy") || explosionTarget.CompareTag("NPC"))
             {
                 AIController aiController = explosionTarget.GetComponent<AIController>();
-                aiController.TakeDamage(fireballProperties.damage);
+                aiController.TakeDamage(fireballProperties.damage, "exploded", "");
             }
         }
 
