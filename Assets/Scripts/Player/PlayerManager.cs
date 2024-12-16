@@ -10,14 +10,69 @@ public class PlayerManager : MonoBehaviour
     public float maxHealth = 200f;
     public float health;
 
-    private bool _alreadyDead;
+    [Header("Falling System")]
+    [SerializeField] 
+    private int fallDamageThreshold = 2; // Minimum fall distance to take damage
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private float fallDamageMultiplier = 20f; // Damage multiplier based on fall distance
+
+    [SerializeField]
+    private int maxFallDistance = 8; // Maximum fall distance without taking fatal damage
+
+    private Vector3 lastGroundedPosition;
+    private bool isFalling = false;
+    private float fallStartHeight;
+
     void Start()
     {
         health = maxHealth;
         UIManager.Instance.UpdateHealth(maxHealth, maxHealth);
         animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        CheckFalling();
+    }
+
+    private void CheckFalling()
+    {
+        RaycastHit hit;
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+
+        if (!isGrounded && !isFalling)
+        {
+            isFalling = true;
+            fallStartHeight = transform.position.y;
+        }
+        else if (isGrounded && isFalling)
+        {
+            float fallDistance = fallStartHeight - transform.position.y;
+            HandleFallDamage(fallDistance);
+            isFalling = false;
+        }
+    }
+
+    private void HandleFallDamage(float fallDistance)
+    {
+        if (fallDistance > fallDamageThreshold)
+        {
+            float damage = (fallDistance - fallDamageThreshold) * fallDamageMultiplier;
+
+            if (fallDistance < maxFallDistance)
+            {
+                TakeDamage(damage);
+            }
+            else
+            {
+                Debug.Log("Fatal Fall!");
+                health = 0;
+                Die();
+            }
+
+            Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
+        }
     }
 
     public void TakeDamage(float damage, string damageType, string killer, KillMesssageType type = KillMesssageType.Default)
