@@ -58,7 +58,7 @@ public class Fireball : Projectile
 
         Cleanup();
 
-        if (!other.CompareTag("WindCurrent")) Destroy(gameObject, impactClip.length);
+        Destroy(gameObject, impactClip.length);
     }
 
     private void Cleanup()

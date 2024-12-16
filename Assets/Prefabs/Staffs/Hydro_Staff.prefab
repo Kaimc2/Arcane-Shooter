@@ -107,7 +107,7 @@ MonoBehaviour:
   weaponController: {fileID: 0}
   maxMana: 50
   mana: 0
-  manaCost: 1
+  manaCost: 5
   rechargeSpeed: 1
   cooldown: 0.5
   isOnCooldown: 0
