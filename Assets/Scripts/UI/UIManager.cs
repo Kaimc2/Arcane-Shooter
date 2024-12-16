@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance; 
+
     public InputActionAsset inputActions;
     public InputActionReference menuAction;
     private InputActionMap gameplayMap;
@@ -22,8 +25,10 @@ public class UIManager : MonoBehaviour
     public Image cooldownOverlay;
 
     [Header("Score")]
-    public TextMeshProUGUI blueScoreUI;
-    public TextMeshProUGUI redScoreUI;
+    public TextMeshProUGUI playerTeamScoreUI;
+    public Image playerTeamScoreBG;
+    public TextMeshProUGUI enemyTeamScoreUI;
+    public Image enemyTeamScoreBG;
 
     [Header("Panel References")]
     public Transform actionPanel;
@@ -38,6 +43,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI sensitivityAmt;
 
     private bool isSettingsOpen = false;
+
+    void Awake()
+    {
+        // Implement Singleton concept
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -95,11 +107,11 @@ public class UIManager : MonoBehaviour
     {
         switch (team)
         {
-            case "Blue":
-                blueScoreUI.text = score.ToString();
+            case "Player":
+                playerTeamScoreUI.text = score.ToString();
                 break;
-            case "Red":
-                redScoreUI.text = score.ToString();
+            case "Enemy":
+                enemyTeamScoreUI.text = score.ToString();
                 break;
             default:
                 break;
@@ -149,16 +161,16 @@ public class UIManager : MonoBehaviour
 
         if (menuAction.action.WasPressedThisFrame())
         {
-            Debug.Log("Open Settings");
             if (!isSettingsOpen)
             {
                 gameplayMap.Disable();
-                PlayerAnimator.active = false;
+                // Don't mess with animation when on title scene
+                if (SceneManager.GetActiveScene().buildIndex != 0) PlayerAnimator.active = false;
             }
             else
             {
                 gameplayMap.Enable();
-                PlayerAnimator.active = true;
+                if (SceneManager.GetActiveScene().buildIndex != 0) PlayerAnimator.active = true;
             }
             settingsPanel.gameObject.SetActive(!isSettingsOpen);
 

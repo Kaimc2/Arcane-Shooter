@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody _projectileRigidbody;
     public AudioSource audioSource;
     public AudioClip impactClip;
+    public GameObject shooter;
 
     [Header("Projectile Properties")]
     public int damage = 0;
@@ -21,6 +22,6 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _projectileRigidbody.velocity = transform.forward * speed;
+        if (!_projectileRigidbody.isKinematic) _projectileRigidbody.velocity = transform.forward * speed;
     }
 }

@@ -3604,7 +3604,7 @@ MonoBehaviour:
   levelDropdown: {fileID: 0}
   levelImages: []
   currentLevelImg: {fileID: 0}
-  winAmount: {fileID: 0}
+  winConditionOptions: {fileID: 0}
   winAmountUI: {fileID: 0}
   loaderCanvas: {fileID: 0}
   bgImage: {fileID: 0}
@@ -68525,7 +68525,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1007
+    m_Bits: 9
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -82779,6 +82779,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7302874737330258860}
     m_Modifications:
+    - target: {fileID: 610390302280228719, guid: 869251dcf4d082742910e0dba9fb3e15,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 640090118866372850, guid: 869251dcf4d082742910e0dba9fb3e15,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 952014504392809307, guid: 869251dcf4d082742910e0dba9fb3e15,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5381302796562503272, guid: 869251dcf4d082742910e0dba9fb3e15,
         type: 3}
       propertyPath: m_Name

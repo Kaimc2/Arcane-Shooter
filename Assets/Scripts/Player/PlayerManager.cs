@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public UIManager uIManager;
     public Animator animator;
 
     [Header("Player Stats")]
     public float maxHealth = 200f;
     public float health;
+    private bool _alreadyDead = false;
 
     [Header("Falling System")]
     [SerializeField] 
@@ -28,10 +28,8 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        uIManager.UpdateHealth(maxHealth, maxHealth);
+        UIManager.Instance.UpdateHealth(maxHealth, maxHealth);
         animator = GetComponent<Animator>();
-
-        Debug.Log($"Initial Fall Damage Threshold: {fallDamageThreshold:F3}");
     }
 
     void Update()
@@ -41,8 +39,7 @@ public class PlayerManager : MonoBehaviour
 
     private void CheckFalling()
     {
-        RaycastHit hit;
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f);
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f);
 
         if (!isGrounded && !isFalling)
         {
@@ -65,31 +62,44 @@ public class PlayerManager : MonoBehaviour
 
             if (fallDistance < maxFallDistance)
             {
-                TakeDamage(damage);
+                TakeDamage(damage, "fell to their death", "", KillMesssageType.StatusEffect);
             }
             else
             {
                 Debug.Log("Fatal Fall!");
                 health = 0;
-                Die();
+                Die("fell to their death", "", KillMesssageType.StatusEffect);
             }
 
             Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string damageType, string killer, KillMesssageType type = KillMesssageType.Default)
     {
         health -= damage;
-        uIManager.UpdateHealth(health, maxHealth);
-        if (health <= 0) Die();
+        UIManager.Instance.UpdateHealth(health, maxHealth);
+
+        if (health <= 0 && !_alreadyDead)
+        {
+            _alreadyDead = true;
+            Die(damageType, killer, type);
+        }
     }
 
-    private void Die()
+    private void Die(string damageType, string killer, KillMesssageType type)
     {
-        Debug.Log("You Died");
+        if (type == KillMesssageType.Default)
+        {
+            KillFeedManager.Instance.AddNewMessage(killer, damageType, gameObject.name);
+        }
+        else
+        {
+            KillFeedManager.Instance.AddNewMessage(gameObject.name, damageType, "");
+        }
+        // Update the enemy team score
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
-        uIManager.GameHub.SetActive(false);
+        UIManager.Instance.GameHub.SetActive(false);
 
         if (animator != null)
         {

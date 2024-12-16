@@ -56,13 +56,13 @@ public abstract class Staff : MonoBehaviour
         while (elapsed < rechargeDuration)
         {
             mana = Mathf.Lerp(mana, maxMana, elapsed / rechargeDuration * Time.deltaTime);
-            if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana, maxMana);
+            if (gameObject.CompareTag("Player")) UIManager.Instance.UpdateMana(mana, maxMana);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         mana = maxMana;
-        if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana, maxMana);
+        if (gameObject.CompareTag("Player")) UIManager.Instance.UpdateMana(mana, maxMana);
         // Debug.Log("Finish reloading");
 
         isRecharging = false;
@@ -81,12 +81,12 @@ public abstract class Staff : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float remainingTime = cooldownDuration - elapsedTime;
-            weaponController.uiManager.UpdateCooldownOverlay(remainingTime, cooldownDuration);
+            UIManager.Instance.UpdateCooldownOverlay(remainingTime, cooldownDuration);
             yield return null;
         }
 
         // Reset the overlay when cooldown end
-        weaponController.uiManager.UpdateCooldownOverlay(0, cooldownDuration);
+        UIManager.Instance.UpdateCooldownOverlay(0, cooldownDuration);
     }
 
     /// <summary>

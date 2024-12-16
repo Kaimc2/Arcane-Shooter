@@ -168,7 +168,7 @@ public class AIController : MonoBehaviour
 
         agent.updatePosition = false;
         agent.updateRotation = false;
-        agent.isStopped = true;
+        if (agent.isOnNavMesh) agent.isStopped = true;
 
         _isJumping = true;
 
@@ -189,7 +189,7 @@ public class AIController : MonoBehaviour
 
                 agent.updateRotation = true;
                 agent.updatePosition = true;
-                agent.isStopped = false;
+                if (agent.isOnNavMesh) agent.isStopped = false;
             }
         }
     }
@@ -202,19 +202,27 @@ public class AIController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string damageType, string killer, KillMesssageType type = KillMesssageType.Default)
     {
         if (_isDead) return;
 
         health -= damage;
-        // Debug.Log($"{gameObject.name} has remaining {health} health");
-
-        if (health <= 0) Die();
+        if (health <= 0)
+        {
+            Die(damageType, killer, type);
+        }
     }
 
-    private void Die()
+    private void Die(string damageType, string killer, KillMesssageType type)
     {
-        Debug.Log($"{gameObject.name} died");
+        if (type == KillMesssageType.Default)
+        {
+            KillFeedManager.Instance.AddNewMessage(killer, damageType, gameObject.name);
+        }
+        else
+        {
+            KillFeedManager.Instance.AddNewMessage(gameObject.name, damageType, "");
+        }
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
 
         if (agent != null && !_isDead)

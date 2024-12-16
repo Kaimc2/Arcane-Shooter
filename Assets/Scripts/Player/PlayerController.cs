@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController _playerController;
     private PlayerAnimator _playerMovement;
     public InputActionReference movementInput;
-    public UIManager uiManager;
 
     [Header("Player Properties")]
     public float maxStamina = 10f;
@@ -63,7 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             stamina -= 1 * Time.deltaTime;
             stamina = Mathf.Max(stamina, 0);
-            uiManager.UpdateStamina(stamina, maxStamina);
+            UIManager.Instance.UpdateStamina(stamina, maxStamina);
 
             if (stamina <= 0)
             {
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
             {
                 stamina += 1 * Time.deltaTime;
                 stamina = Mathf.Min(stamina, maxStamina);
-                uiManager.UpdateStamina(stamina, maxStamina);
+                UIManager.Instance.UpdateStamina(stamina, maxStamina);
             }
 
             if (stamina > 1)

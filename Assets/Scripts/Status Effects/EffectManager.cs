@@ -18,7 +18,7 @@ public class EffectManager : MonoBehaviour
         {
             if (activeEffect.type == newEffect.type)
             {
-                Debug.Log("Re-apply effect");
+                // Debug.Log("Re-apply effect");
                 alreadyActive = true;
                 activeEffect.ResetEffect();
                 break;

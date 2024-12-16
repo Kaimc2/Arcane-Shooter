@@ -39,7 +39,7 @@ public class WindStaff : Staff
 
             Instantiate(projectilePrefab, aimDir, Quaternion.LookRotation(aimDir, Vector3.up));
             mana -= manaCost;
-            if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana, maxMana);
+            if (gameObject.CompareTag("Player")) UIManager.Instance.UpdateMana(mana, maxMana);
 
             // Play sound effect
             if (fireClip) audioSource.PlayOneShot(fireClip);

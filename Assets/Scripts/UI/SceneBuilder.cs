@@ -10,7 +10,7 @@ public class SceneBuilder : MonoBehaviour
     public TMP_Dropdown levelDropdown;
     public Sprite[] levelImages;
     public Image currentLevelImg;
-    public Slider winAmount;
+    public GameObject winConditionOptions;
     public TextMeshProUGUI winAmountUI;
 
     [Header("Loading Screen")]
@@ -38,14 +38,14 @@ public class SceneBuilder : MonoBehaviour
         Application.Quit();
 
         // This only works in the Unity Editor, not in a standalone build
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
-    public void SetWinCondition()
+    public void SetWinCondition(int amount)
     {
-        winCondition = winAmount.value;
+        winCondition = amount;
         winAmountUI.text = winCondition.ToString();
     }
 
@@ -53,7 +53,16 @@ public class SceneBuilder : MonoBehaviour
     {
         levelIndex = levelDropdown.value;
         currentLevelImg.sprite = levelImages[levelIndex];
-        Debug.Log(levelIndex);
+        if (levelIndex == 0)
+        {
+            winConditionOptions.SetActive(false);
+            winAmountUI.text = "Infinite";
+        }
+        else
+        {
+            winConditionOptions.SetActive(true);
+            winAmountUI.text = winCondition.ToString();
+        }
     }
     public void LoadLevelByIndex()
     {
@@ -77,7 +86,7 @@ public class SceneBuilder : MonoBehaviour
         while (!scene.isDone)
         {
             _target = scene.progress;
-            
+
             if (scene.progress >= 0.9f)
             {
                 yield return new WaitForSeconds(1f);

@@ -13,19 +13,19 @@ public class Hydro : Projectile
         if (other.CompareTag("Player"))
         {
             PlayerManager playerManager = other.GetComponent<PlayerManager>();
-            playerManager.TakeDamage(damage);
+            playerManager.TakeDamage(damage, "drowned", shooter.name);
 
             ReactionManager.ApplyEffect(other.gameObject, wetEffect);
         }
         else if (other.CompareTag("Enemy") || other.CompareTag("NPC"))
         {
             AIController aiController = other.GetComponent<AIController>();
-            aiController.TakeDamage(damage);
+            aiController.TakeDamage(damage, "drowned", shooter.name);
 
             ReactionManager.ApplyEffect(other.gameObject, wetEffect);
         }
 
         // Debug.Log($"Water Orb hit {other.gameObject.name}");
-        Destroy(gameObject);
+        if (!other.CompareTag("WindCurrent")) Destroy(gameObject);
     }
 }
