@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: -315358976330143507}
   - component: {fileID: 7460796691520655986}
   m_Layer: 0
-  m_Name: vfx_ligntning
+  m_Name: vfx_ligntning_old
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -22,6 +22,6 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _projectileRigidbody.velocity = transform.forward * speed;
+        if (!_projectileRigidbody.isKinematic) _projectileRigidbody.velocity = transform.forward * speed;
     }
 }

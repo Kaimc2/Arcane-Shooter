@@ -26,6 +26,6 @@ public class Hydro : Projectile
         }
 
         // Debug.Log($"Water Orb hit {other.gameObject.name}");
-        Destroy(gameObject);
+        if (!other.CompareTag("WindCurrent")) Destroy(gameObject);
     }
 }

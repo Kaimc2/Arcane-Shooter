@@ -29,7 +29,7 @@ public class Fireball : Projectile
         {
             Collider explosionTarget = _hitTargets[i];
             Rigidbody objectRb = explosionTarget.GetComponent<Rigidbody>();
-            if (objectRb != null && !explosionTarget.CompareTag("Projectile"))
+            if (objectRb != null && !explosionTarget.CompareTag("Projectile") && !explosionTarget.CompareTag("WindCurrent"))
             {
                 objectRb.AddExplosionForce(force, transform.position, blastRadius);
             }
@@ -53,14 +53,12 @@ public class Fireball : Projectile
             }
         }
 
-        // Debug.Log($"Fireball hit {other.gameObject.name}");
-
         // Play impact sound effect 
         if (impactClip != null) audioSource.PlayOneShot(impactClip);
 
         Cleanup();
 
-        Destroy(gameObject, impactClip.length);
+        if (!other.CompareTag("WindCurrent")) Destroy(gameObject, impactClip.length);
     }
 
     private void Cleanup()
