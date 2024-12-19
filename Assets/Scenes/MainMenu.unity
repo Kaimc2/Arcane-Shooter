@@ -396,6 +396,7 @@ MonoBehaviour:
   levelImages:
   - {fileID: 21300000, guid: 0543e021935f12f4084aae92def2b1ab, type: 3}
   - {fileID: 21300000, guid: 51cdcdf37090902409fc509210e12ea0, type: 3}
+  - {fileID: 21300000, guid: 29154762cb219384fb043488cf3f2d18, type: 3}
   currentLevelImg: {fileID: 931492342}
   winConditionOptions: {fileID: 2011269870}
   winAmountUI: {fileID: 1313496524}
@@ -3588,6 +3589,8 @@ MonoBehaviour:
     - m_Text: Practice
       m_Image: {fileID: 0}
     - m_Text: Island
+      m_Image: {fileID: 0}
+    - m_Text: Ancient Village
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
