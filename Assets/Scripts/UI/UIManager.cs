@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance; 
+    public static UIManager Instance;
 
     public InputActionAsset inputActions;
     public InputActionReference menuAction;
@@ -62,6 +62,7 @@ public class UIManager : MonoBehaviour
             uiMap.Enable();
         }
 
+        CameraController.mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 80f);
         sensitivityAmt.text = Mathf.Round(CameraController.mouseSensitivity).ToString();
         sensitivitySlider.value = CameraController.mouseSensitivity;
     }
@@ -155,6 +156,9 @@ public class UIManager : MonoBehaviour
             gameplayMap.Enable();
             PlayerAnimator.active = true;
         }
+
+        PlayerPrefs.SetFloat("MouseSensitivity", CameraController.mouseSensitivity);
+        PlayerPrefs.Save();
     }
     public void ToggleSettings()
     {
@@ -172,6 +176,8 @@ public class UIManager : MonoBehaviour
             {
                 gameplayMap.Enable();
                 if (SceneManager.GetActiveScene().buildIndex != 0) PlayerAnimator.active = true;
+                PlayerPrefs.SetFloat("MouseSensitivity", CameraController.mouseSensitivity);
+                PlayerPrefs.Save();
             }
             settingsPanel.gameObject.SetActive(!isSettingsOpen);
 

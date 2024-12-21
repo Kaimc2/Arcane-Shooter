@@ -1441,6 +1441,9 @@ MonoBehaviour:
   isInAttackRange: 0
   jumpHeight: 1.5
   jumpInterval: 20
+  fallDamageThreshold: 2
+  fallDamageMultiplier: 20
+  maxFallDistance: 8
 --- !u!1 &5432680473461974054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3012,7 +3015,7 @@ PrefabInstance:
     - target: {fileID: 5922021072647906919, guid: de29a6ccd48d59a44a32c3cc82b4837d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7762329760500100867, guid: de29a6ccd48d59a44a32c3cc82b4837d,
         type: 3}
