@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
         health = maxHealth;
         UIManager.Instance.UpdateHealth(maxHealth, maxHealth);
         animator = GetComponent<Animator>();
+        PlayerAnimator.active = true;
     }
 
     void Update()

@@ -21,9 +21,9 @@ public class WindStaff : Staff
 
     private void FiringLogic(Vector3 aimDir)
     {
-        if (projectilePrefab == null || projectileSpawnPosition == null)
+        if (projectilePrefab == null)
         {
-            Debug.LogWarning("Projectile or spawn location not assigned");
+            Debug.LogWarning("Projectile not assigned");
             return;
         }
 
@@ -37,7 +37,7 @@ public class WindStaff : Staff
             lastFireTime = Time.time;
             if (gameObject.CompareTag("Player")) StartCooldown(cooldown);
 
-            Instantiate(projectilePrefab, aimDir, Quaternion.LookRotation(aimDir, Vector3.up));
+            Instantiate(projectilePrefab, aimDir, Quaternion.identity);
             mana -= manaCost;
             if (gameObject.CompareTag("Player")) UIManager.Instance.UpdateMana(mana, maxMana);
 
