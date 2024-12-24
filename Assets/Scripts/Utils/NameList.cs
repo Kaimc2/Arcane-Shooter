@@ -10,7 +10,7 @@ public class NameList
         "Aziel", "Thorne", "Lyric", "Kael", "Veyra", "ShotoHak", "Sorin", "Draxis", "Merla", "Fael",
         "Kaine", "Zoryn", "Evara", "Mistral", "Zareth", "Kakada", "Ardyn", "Cerys", "PPC", "Vyra",
         "Nyssa", "Liza_Ch", "Kyra", "Orin", "Selwyn", "Zephyr", "Kaira", "Eris", "Rayne", "Malric",
-        "Alaric", "Breya", "Taryn", "Elric", "Sylas", "Auren", "Fenrir", "Lyssa", "Tariel", "Cyris",
+        "Alaric", "Breya", "Taryn", "Elric", "Sylas", "Auren", "Fenrir", "Lyssa", "Tariel", "Pichey",
         "Nym", "Faelor", "JohnGenshin", "Zilric", "Tyris", "Mora", "LumineLover", "Drayse", "Sylwyn", "Varyn"
     };
 
