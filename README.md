@@ -1,5 +1,5 @@
 ## About
-Arcane Shooter is a first-person shooter (FPS) game set in a fantasy world where players engage in combat using magic powers. The game combines traditional FPS mechanics with unique magical abilities. The game can be played solo against AI-controlled bots or against other players in multiplayer.
+Arcane Shooter is a first-person shooter (FPS) game set in a fantasy world where players engage in combat using magic powers. The game combines traditional FPS mechanics with unique magical abilities. The game can be played solo against AI-controlled bots or against other players in multiplayer (Multiplayer not finished).
 
 ## Features
 ### Magic Wands
