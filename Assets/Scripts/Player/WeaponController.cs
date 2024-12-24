@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
-    public Transform[] weapons;
     public UIManager uiManager;
+    public Transform[] weapons;
 
     public InputActionReference numberInput;
     public InputActionReference scrollInput;
@@ -34,10 +34,13 @@ public class WeaponController : MonoBehaviour
                 Debug.LogWarning($"No staff script found on {weapons[i].name}");
             }
         }
+    }
 
-        // Initialize the mana UI
-        uiManager.UpdateMana(_weaponScripts[_currentWeaponIndex].maxMana, _weaponScripts[_currentWeaponIndex].maxMana);
+    void Start()
+    {
+        // Initialize the weapon UI
         uiManager.UpdateWeaponUI(_weaponScripts[_currentWeaponIndex].gameObject.name);
+        uiManager.UpdateMana(_weaponScripts[_currentWeaponIndex].maxMana, _weaponScripts[_currentWeaponIndex].maxMana);
     }
 
     void OnEnable()
@@ -107,6 +110,7 @@ public class WeaponController : MonoBehaviour
 
         _currentWeaponIndex = weaponIndex;
         uiManager.UpdateWeaponUI(_weaponScripts[weaponIndex].gameObject.name);
+        uiManager.UpdateCooldownOverlay(0, _weaponScripts[_currentWeaponIndex].cooldown);
 
         // Subscribe to the selected weapon's Fire function 
         SetCurrentWeaponFiringAction();

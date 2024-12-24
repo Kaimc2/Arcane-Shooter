@@ -8,7 +8,6 @@ public class RockStaff : Staff
     public override void Fire()
     {
         Vector3 aimDir = GetAimDirectionGround();
-        Debug.Log(aimDir);
         FiringLogic(aimDir);
     }
 
@@ -41,7 +40,7 @@ public class RockStaff : Staff
             // Spawn the rock wall 
             Instantiate(projectilePrefab, aimDir, Quaternion.identity);
             mana -= manaCost;
-            if (gameObject.CompareTag("Player")) weaponController.uiManager.UpdateMana(mana, maxMana);
+            if (gameObject.CompareTag("Player")) UIManager.Instance.UpdateMana(mana, maxMana);
 
             // Play sound effect
             if (fireClip) audioSource.PlayOneShot(fireClip);

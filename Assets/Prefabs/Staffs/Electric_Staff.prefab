@@ -129,16 +129,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659df0dd9c4eebb45a957a248d4f725e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6496672675037705954, guid: 6740eeece5dd76e48b42ca2056e74103,
+  projectilePrefab: {fileID: 5957861827286697739, guid: 7c0d8d24a3a16db4d80adea72cf3e748,
     type: 3}
   projectileSpawnPosition: {fileID: 3412885921504137123}
   projectileColliderLayerMask:
     serializedVersion: 2
     m_Bits: 777
   weaponController: {fileID: 0}
-  maxMana: 100
+  maxMana: 5
   mana: 0
-  manaCost: 4
+  manaCost: 1
   rechargeSpeed: 1
   cooldown: 3
   isOnCooldown: 0

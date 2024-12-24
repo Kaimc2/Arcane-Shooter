@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 enum Wizard
@@ -14,25 +10,6 @@ enum Wizard
     Enemy
 }
 
-public class Team
-{
-    public List<GameObject> members;
-    public Transform[] spawnPoints;
-    public Material modelMat;
-    public Material cloakMat;
-    public float score = 0f;
-    public string color;
-
-    public Team(List<GameObject> members, Transform[] spawnPoints, Material material, Material cloakMat, string color)
-    {
-        this.members = members;
-        this.spawnPoints = spawnPoints;
-        modelMat = material;
-        this.cloakMat = cloakMat;
-        this.color = color;
-    }
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -40,7 +17,6 @@ public class GameManager : MonoBehaviour
     private bool isGameOver;
 
     [Header("Object References")]
-    public UIManager uiManager;
     public GameObject[] wizards;
     public List<GameObject> blueTeam;
     public List<GameObject> redTeam;
@@ -56,7 +32,9 @@ public class GameManager : MonoBehaviour
     // Properties for generating team
     private bool isPlayerTeamBlue;
     private Team playerTeam;
+    private List<string> playerTeamNames;
     private Team enemyTeam;
+    private List<string> enemyTeamNames;
 
     void Awake()
     {
@@ -76,7 +54,7 @@ public class GameManager : MonoBehaviour
         RespawnPlayer();
         RespawnTeam(playerTeam.members, playerTeam.spawnPoints, Wizard.NPC, playerTeam.modelMat, playerTeam.cloakMat);
         RespawnTeam(enemyTeam.members, enemyTeam.spawnPoints, Wizard.Enemy, enemyTeam.modelMat, enemyTeam.cloakMat);
-        CheckWinner();
+        if (SceneManager.GetActiveScene().buildIndex != 1) CheckWinner();
     }
 
     private void RespawnTeam(List<GameObject> team, Transform[] spawnPoints, Wizard wizardType, Material modelMat, Material cloakMat)
@@ -86,7 +64,10 @@ public class GameManager : MonoBehaviour
             // Respawn team members
             if (team[i] == null)
             {
-                team[i] = Instantiate(wizards[(int)wizardType], spawnPoints[i].position, spawnPoints[i].rotation);
+                GameObject aiObj = Instantiate(wizards[(int)wizardType], spawnPoints[i].position, spawnPoints[i].rotation);
+                if (wizardType == Wizard.NPC) aiObj.name = playerTeamNames[i];
+                if (wizardType == Wizard.Enemy) aiObj.name = enemyTeamNames[i];
+                team[i] = aiObj;
             }
         }
 
@@ -97,8 +78,10 @@ public class GameManager : MonoBehaviour
     {
         if (playerTeam.members[0] == null)
         {
-            uiManager.GameHub.SetActive(true);
-            playerTeam.members[0] = Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation);
+            UIManager.Instance.GameHub.SetActive(true);
+            GameObject playerObj = Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation); 
+            playerObj.name = "Player";
+            playerTeam.members[0] = playerObj;
         }
 
         // Apply the team texture to player
@@ -118,9 +101,10 @@ public class GameManager : MonoBehaviour
 
     private void GenerateTeam()
     {
+        NameList nameList = new();
+
         // Generate team (0) = Red, (1) = Blue
         isPlayerTeamBlue = Random.Range(0, 2) == 1;
-        Debug.Log($"Is Player Team Blue: {isPlayerTeamBlue}");
 
         // Generate Team
         playerTeam = new(
@@ -130,6 +114,7 @@ public class GameManager : MonoBehaviour
             isPlayerTeamBlue ? blueTeamCloakMat : redTeamCloakMat,
             isPlayerTeamBlue ? "Blue" : "Red"
         );
+        playerTeamNames = new();
 
         enemyTeam = new(
             isPlayerTeamBlue ? redTeam : blueTeam,
@@ -138,21 +123,35 @@ public class GameManager : MonoBehaviour
             isPlayerTeamBlue ? redTeamCloakMat : blueTeamCloakMat,
             isPlayerTeamBlue ? "Red" : "Blue"
         );
+        enemyTeamNames = new();
+
+        // Set the score background
+        UIManager.Instance.playerTeamScoreBG.color = isPlayerTeamBlue ? Color.blue : Color.red;
+        UIManager.Instance.enemyTeamScoreBG.color = isPlayerTeamBlue ? Color.red : Color.blue;
 
         // Add player to their team
-        uiManager.GameHub.SetActive(true);
-        playerTeam.members.Add(Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation));
+        UIManager.Instance.GameHub.SetActive(true);
+        GameObject playerObj = Instantiate(wizards[(int)Wizard.Player], playerTeam.spawnPoints[0].position, playerTeam.spawnPoints[0].rotation);
+        playerObj.name = "Player";
+        playerTeam.members.Add(playerObj);
+        playerTeamNames.Add(playerObj.name);
 
         // Add NPCs to player team
         for (int i = 1; i < playerTeam.spawnPoints.Length; i++)
         {
-            playerTeam.members.Add(Instantiate(wizards[(int)Wizard.NPC], playerTeam.spawnPoints[i].position, playerTeam.spawnPoints[i].rotation));
+            GameObject npc = Instantiate(wizards[(int)Wizard.NPC], playerTeam.spawnPoints[i].position, playerTeam.spawnPoints[i].rotation);
+            npc.name = $"{nameList.GetRandomName()} (NPC)";
+            playerTeam.members.Add(npc);
+            playerTeamNames.Add(npc.name);
         }
 
         // Add Enemies to enemy team
         for (int i = 0; i < enemyTeam.spawnPoints.Length; i++)
         {
-            enemyTeam.members.Add(Instantiate(wizards[(int)Wizard.Enemy], enemyTeam.spawnPoints[i].position, enemyTeam.spawnPoints[i].rotation));
+            GameObject enemy = Instantiate(wizards[(int)Wizard.Enemy], enemyTeam.spawnPoints[i].position, enemyTeam.spawnPoints[i].rotation);
+            enemy.name = $"{nameList.GetRandomName()} (Enemy)";
+            enemyTeam.members.Add(enemy);
+            enemyTeamNames.Add(enemy.name);
         }
 
         // Apply team materials
@@ -187,12 +186,12 @@ public class GameManager : MonoBehaviour
         if (isEnemy)
         {
             playerTeam.score++;
-            uiManager.UpdateScore(playerTeam.color, playerTeam.score);
+            UIManager.Instance.UpdateScore("Player", playerTeam.score);
         }
         else
         {
             enemyTeam.score++;
-            uiManager.UpdateScore(enemyTeam.color, enemyTeam.score);
+            UIManager.Instance.UpdateScore("Enemy", enemyTeam.score);
         }
     }
 
@@ -205,11 +204,11 @@ public class GameManager : MonoBehaviour
 
             if (playerTeam.score > enemyTeam.score)
             {
-                uiManager.ToggleGameOverPanel($"{playerTeam.color} Team Win!");
+                UIManager.Instance.ToggleGameOverPanel($"{playerTeam.color} Team Win!");
             }
             else
             {
-                uiManager.ToggleGameOverPanel($"{enemyTeam.color} Team Win!");
+                UIManager.Instance.ToggleGameOverPanel($"{enemyTeam.color} Team Win!");
             }
         }
     }

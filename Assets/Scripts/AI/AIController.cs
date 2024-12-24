@@ -35,6 +35,20 @@ public class AIController : MonoBehaviour
     private float _nextJumpTime;
     private bool _isJumping;
 
+    [Header("Falling System")]
+    [SerializeField]
+    private int fallDamageThreshold = 2; // Minimum fall distance to take damage
+
+    [SerializeField]
+    private float fallDamageMultiplier = 20f; // Damage multiplier based on fall distance
+
+    [SerializeField]
+    private int maxFallDistance = 8; // Maximum fall distance without taking fatal damage
+
+    private Vector3 lastGroundedPosition;
+    private bool isFalling = false;
+    private float fallStartHeight;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -68,6 +82,9 @@ public class AIController : MonoBehaviour
         // }
 
         animator.SetFloat("Speed", agent.velocity.magnitude);
+
+        // Check for falling
+        CheckFalling();
     }
 
     private void FindTarget()
@@ -168,7 +185,7 @@ public class AIController : MonoBehaviour
 
         agent.updatePosition = false;
         agent.updateRotation = false;
-        agent.isStopped = true;
+        if (agent.isOnNavMesh) agent.isStopped = true;
 
         _isJumping = true;
 
@@ -189,7 +206,7 @@ public class AIController : MonoBehaviour
 
                 agent.updateRotation = true;
                 agent.updatePosition = true;
-                agent.isStopped = false;
+                if (agent.isOnNavMesh) agent.isStopped = false;
             }
         }
     }
@@ -202,19 +219,65 @@ public class AIController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
-    public void TakeDamage(float damage)
+    private void CheckFalling()
+    {
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.1f);
+
+        if (!isGrounded && !isFalling)
+        {
+            isFalling = true;
+            fallStartHeight = transform.position.y;
+        }
+        else if (isGrounded && isFalling)
+        {
+            float fallDistance = fallStartHeight - transform.position.y;
+            HandleFallDamage(fallDistance);
+            isFalling = false;
+        }
+    }
+
+    private void HandleFallDamage(float fallDistance)
+    {
+        if (fallDistance > fallDamageThreshold)
+        {
+            float damage = (fallDistance - fallDamageThreshold) * fallDamageMultiplier;
+
+            if (fallDistance < maxFallDistance)
+            {
+                TakeDamage(damage, "fell to their death", "", KillMesssageType.StatusEffect);
+            }
+            else
+            {
+                Debug.Log("Fatal Fall!");
+                health = 0;
+                Die("fell to their death", "", KillMesssageType.StatusEffect);
+            }
+
+            Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
+        }
+    }
+
+    public void TakeDamage(float damage, string damageType, string killer, KillMesssageType type = KillMesssageType.Default)
     {
         if (_isDead) return;
 
         health -= damage;
-        // Debug.Log($"{gameObject.name} has remaining {health} health");
-
-        if (health <= 0) Die();
+        if (health <= 0)
+        {
+            Die(damageType, killer, type);
+        }
     }
 
-    private void Die()
+    private void Die(string damageType, string killer, KillMesssageType type)
     {
-        Debug.Log($"{gameObject.name} died");
+        if (type == KillMesssageType.Default)
+        {
+            KillFeedManager.Instance.AddNewMessage(killer, damageType, gameObject.name);
+        }
+        else
+        {
+            KillFeedManager.Instance.AddNewMessage(gameObject.name, damageType, "");
+        }
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
 
         if (agent != null && !_isDead)
