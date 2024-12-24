@@ -25,5 +25,17 @@ public class KillMessage : MonoBehaviour
         killerDisplay.text = killer;
         howDisplay.text = how;
         victimDisplay.text = victim;
+        if (victim.Contains("(Enemy)"))
+        {
+            killerDisplay.color = Color.blue; 
+            howDisplay.color = Color.blue;
+            victimDisplay.color = Color.blue;
+        }
+        else
+        {
+            killerDisplay.color = Color.red; 
+            howDisplay.color = Color.red;
+            victimDisplay.color = Color.red;
+        }
     }
 }
