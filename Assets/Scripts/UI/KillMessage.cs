@@ -27,15 +27,15 @@ public class KillMessage : MonoBehaviour
         victimDisplay.text = victim;
         if (victim.Contains("(Enemy)"))
         {
-            killerDisplay.color = Color.blue; 
-            howDisplay.color = Color.blue;
-            victimDisplay.color = Color.blue;
+            killerDisplay.color = GameManager.Instance.isPlayerTeamBlue ? Color.blue : Color.red; 
+            howDisplay.color = GameManager.Instance.isPlayerTeamBlue ? Color.blue : Color.red;
+            victimDisplay.color = GameManager.Instance.isPlayerTeamBlue ? Color.blue : Color.red;
         }
         else
         {
-            killerDisplay.color = Color.red; 
-            howDisplay.color = Color.red;
-            victimDisplay.color = Color.red;
+            killerDisplay.color = GameManager.Instance.isPlayerTeamBlue ? Color.red : Color.blue; 
+            howDisplay.color = GameManager.Instance.isPlayerTeamBlue ? Color.red : Color.blue;
+            victimDisplay.color = GameManager.Instance.isPlayerTeamBlue ? Color.red : Color.blue;
         }
     }
 }
