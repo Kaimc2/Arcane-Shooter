@@ -79,7 +79,24 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHealth(float health, float maxHealth)
     {
-        healthAmount.fillAmount = Mathf.Clamp01(health / maxHealth);
+        // healthAmount.fillAmount = Mathf.Clamp01(health / maxHealth);
+        float healthPercentage = Mathf.Clamp01(health / maxHealth);
+
+    // Update the health bar fill amount
+        healthAmount.fillAmount = healthPercentage;
+
+    // Change the health bar color based on the health percentage
+        if (healthPercentage < 0.30f)
+        {
+            healthAmount.color = Color.red; 
+        }
+        else if (healthPercentage < 0.65f)
+        {
+            healthAmount.color = Color.yellow; 
+        }else 
+        {
+            healthAmount.color = Color.green; 
+        }
     }
 
     public void UpdateStamina(float stamina, float maxStamina)
@@ -191,4 +208,5 @@ public class UIManager : MonoBehaviour
         CameraController.mouseSensitivity = sensitivitySlider.value;
         sensitivityAmt.text = Mathf.Round(sensitivitySlider.value).ToString();
     }
+    
 }
