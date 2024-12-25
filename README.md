@@ -42,8 +42,8 @@ This project was made possible by the talented artists and asset creators in the
 - [PolyArt - Ancient Village Pack](https://assetstore.unity.com/packages/3d/environments/fantasy/polyart-ancient-village-pack-166022) by Render Island.
 
 ## Credits
-I would like to emphasize that this project is strictly for educational and non-commercial purposes. So I like to express my gratitude to many talented artists outside of Unity community too.
-- Audios and Sound Effects from [SoundCloud](https://soundcloud.com).
+I would like to emphasize that this project is strictly for educational and non-commercial purposes. So I like to express my gratitude to many talented artists outside of Unity community too including:
+- Audios and Sound Effects from [SoundCloud](https://soundcloud.com) and [Pixabay](https://pixabay.com).
 - Element images borrow from a known popular games like Genshin Impact and Honkai: Star Rail by [Hoyoverse](https://www.hoyoverse.com/en-us/).
 
 ## Known Issues
