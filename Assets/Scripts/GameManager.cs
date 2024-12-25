@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public Material redTeamCloakMat;
 
     // Properties for generating team
-    private bool isPlayerTeamBlue;
+    public bool isPlayerTeamBlue;
     private Team playerTeam;
     private List<string> playerTeamNames;
     private Team enemyTeam;

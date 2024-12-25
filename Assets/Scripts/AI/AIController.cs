@@ -253,7 +253,7 @@ public class AIController : MonoBehaviour
                 Die("fell to their death", "", KillMesssageType.StatusEffect);
             }
 
-            Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
+            // Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
         }
     }
 

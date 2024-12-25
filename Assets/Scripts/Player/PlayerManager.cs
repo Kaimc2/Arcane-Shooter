@@ -67,12 +67,12 @@ public class PlayerManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Fatal Fall!");
+                // Debug.Log("Fatal Fall!");
                 health = 0;
                 Die("fell to their death", "", KillMesssageType.StatusEffect);
             }
 
-            Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
+            // Debug.Log($"Fall Distance: {fallDistance}, Damage: {damage}");
         }
     }
 
