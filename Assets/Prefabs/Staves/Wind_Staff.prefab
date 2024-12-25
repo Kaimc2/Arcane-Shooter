@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &870976643119429151
+--- !u!1 &3259193378096950159
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9121212503077834200}
-  - component: {fileID: 4666738365671516312}
-  - component: {fileID: 2862537145931137020}
-  - component: {fileID: 8621167604030316870}
-  - component: {fileID: 2501632240108823793}
+  - component: {fileID: 4340838885575139710}
+  - component: {fileID: 4859471155466641142}
+  - component: {fileID: 2574030677270293787}
+  - component: {fileID: 2228160056727568833}
+  - component: {fileID: 5652357484025366095}
   m_Layer: 7
-  m_Name: Hydro_Staff
+  m_Name: Wind_Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9121212503077834200
+--- !u!4 &4340838885575139710
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870976643119429151}
+  m_GameObject: {fileID: 3259193378096950159}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4733461, y: -0.26742408, z: 0.83924675, w: -0.00965409}
-  m_LocalPosition: {x: 4.607972, y: 2.0175653, z: -30.1}
+  m_LocalRotation: {x: -0.11093626, y: -0.2867207, z: 0.9507783, w: 0.03880381}
+  m_LocalPosition: {x: 3.55, y: 2.1089134, z: -30.919456}
   m_LocalScale: {x: 0.5, y: 0.59999996, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 703236727385712054}
+  - {fileID: 588534721151644225}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -128.463, y: 34.031998, z: 61.869003}
---- !u!33 &4666738365671516312
+  m_LocalEulerAnglesHint: {x: -110.07, y: 117.046005, z: -32.307007}
+--- !u!33 &4859471155466641142
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870976643119429151}
-  m_Mesh: {fileID: 4300000, guid: 199d5221dad59a74aa0d8d47e83e6e03, type: 3}
---- !u!23 &2862537145931137020
+  m_GameObject: {fileID: 3259193378096950159}
+  m_Mesh: {fileID: 4300000, guid: 4568399afa0fdc64bb50a337c6acb100, type: 3}
+--- !u!23 &2574030677270293787
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870976643119429151}
+  m_GameObject: {fileID: 3259193378096950159}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,42 +86,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8621167604030316870
+--- !u!114 &2228160056727568833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870976643119429151}
+  m_GameObject: {fileID: 3259193378096950159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7738e2190ca06d41a38c5e448f7e1bd, type: 3}
+  m_Script: {fileID: 11500000, guid: cfc47b76ee72d5c4da0090d3e1257932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 5122495324394048967, guid: b55a00a167eb0444fa62a8fffb8a81c9,
+  projectilePrefab: {fileID: 3423388300971593625, guid: 4b2208e000774f74e8e768f7c415f002,
     type: 3}
-  projectileSpawnPosition: {fileID: 703236727385712054}
+  projectileSpawnPosition: {fileID: 588534721151644225}
   projectileColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 905
   weaponController: {fileID: 0}
-  maxMana: 50
+  maxMana: 5
   mana: 0
-  manaCost: 5
-  rechargeSpeed: 1
-  cooldown: 0.5
+  manaCost: 1
+  rechargeSpeed: 1.5
+  cooldown: 5
   isOnCooldown: 0
   isRecharging: 0
   weight: 1.5
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 5652357484025366095}
   fireClip: {fileID: 0}
---- !u!82 &2501632240108823793
+--- !u!82 &5652357484025366095
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870976643119429151}
+  m_GameObject: {fileID: 3259193378096950159}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -211,7 +211,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &8501842691435383818
+--- !u!1 &6077206323034155441
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,26 +219,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 703236727385712054}
+  - component: {fileID: 588534721151644225}
   m_Layer: 7
-  m_Name: HydroSpawn
+  m_Name: WindSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &703236727385712054
+--- !u!4 &588534721151644225
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8501842691435383818}
+  m_GameObject: {fileID: 6077206323034155441}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.025792912, y: 0.24087852, z: -0.9631852, w: 0.116561554}
-  m_LocalPosition: {x: -1.135, y: -1.664, z: 0.607}
-  m_LocalScale: {x: 1.9821624, y: 1.7439601, z: 1.9153658}
+  m_LocalRotation: {x: 0.01117974, y: 0.28110906, z: -0.9571632, w: 0.068494104}
+  m_LocalPosition: {x: -0.037, y: -1.216, z: 0.094}
+  m_LocalScale: {x: 1.9937848, y: 1.756487, z: 1.8899157}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9121212503077834200}
+  m_Father: {fileID: 4340838885575139710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
