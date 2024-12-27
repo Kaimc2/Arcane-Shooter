@@ -17,7 +17,7 @@ Our game also support some elemental reactions such as:
 Arcane Shooter main gamemode is a team deathmatch mode against bots. The objective is simple: the first team to reach the target score wins. Player can customize match settings, with score goals ranging from 5 to 50.
 
 ## Demo
-(⸝⸝⸝╸▵╺⸝⸝⸝) [Demo Link](https://youtu.be/0U700Ls4RRM)
+(づ⸝⸝⸝╸▵╺⸝⸝⸝)づ [Demo Link](https://youtu.be/0U700Ls4RRM)
 
 ## Installation Guide
 if you want to run this project using the source code, please note that this project is pretty large (about 4.38 GB). Ensure you have sufficient storage space and a stable internet connection.
