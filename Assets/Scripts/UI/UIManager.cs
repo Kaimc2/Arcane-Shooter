@@ -122,6 +122,7 @@ public class UIManager : MonoBehaviour
     public void ToggleGameOverPanel(string message)
     {
         Cursor.lockState = CursorLockMode.None;
+        countdownPanel.SetActive(false);
         gameOverPanel.gameObject.SetActive(true);
         gameOverMessage.text = message;
     }
@@ -213,7 +214,6 @@ public class UIManager : MonoBehaviour
         countdown = 5;
         countdownText.text = Mathf.Round(countdown).ToString();
         countdownPanel.SetActive(true);
-        Debug.Log("Start Respawn");
 
         StartCoroutine(CountdownRoutine());
     }
