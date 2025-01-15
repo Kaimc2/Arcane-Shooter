@@ -101,6 +101,7 @@ public class PlayerManager : MonoBehaviour
         // Update the enemy team score
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
         UIManager.Instance.GameHub.SetActive(false);
+        UIManager.Instance.StartRespawnCountdown();
 
         if (animator != null)
         {
