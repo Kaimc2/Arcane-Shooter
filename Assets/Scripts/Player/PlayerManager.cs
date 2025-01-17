@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     private bool _alreadyDead = false;
 
     [Header("Falling System")]
-    [SerializeField] 
+    [SerializeField]
     private int fallDamageThreshold = 2; // Minimum fall distance to take damage
 
     [SerializeField]
@@ -101,6 +101,7 @@ public class PlayerManager : MonoBehaviour
         // Update the enemy team score
         GameManager.Instance.UpdateScore(gameObject.CompareTag("Enemy"));
         UIManager.Instance.GameHub.SetActive(false);
+        if (!GameManager.Instance.isGameOver) UIManager.Instance.StartRespawnCountdown();
 
         if (animator != null)
         {

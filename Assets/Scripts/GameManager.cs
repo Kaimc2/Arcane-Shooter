@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public static float winCondition = 10f;
-    private bool isGameOver;
+    public bool isGameOver;
 
     [Header("Object References")]
     public GameObject[] wizards;

@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public InputActionReference menuAction;
     private InputActionMap gameplayMap;
     private InputActionMap uiMap;
+    private float countdown;
 
     [Header("Player Stats")]
     public Image healthAmount;
@@ -35,12 +36,14 @@ public class UIManager : MonoBehaviour
     public Transform levelSelectPanel;
     public Transform settingsPanel;
     public Transform gameOverPanel;
+    public GameObject countdownPanel;
     public GameObject GameHub;
 
     [Header("Panel Properties")]
     public TextMeshProUGUI gameOverMessage;
     public Slider sensitivitySlider;
     public TextMeshProUGUI sensitivityAmt;
+    public TextMeshProUGUI countdownText;
 
     private bool isSettingsOpen = false;
 
@@ -82,20 +85,21 @@ public class UIManager : MonoBehaviour
         // healthAmount.fillAmount = Mathf.Clamp01(health / maxHealth);
         float healthPercentage = Mathf.Clamp01(health / maxHealth);
 
-    // Update the health bar fill amount
+        // Update the health bar fill amount
         healthAmount.fillAmount = healthPercentage;
 
-    // Change the health bar color based on the health percentage
+        // Change the health bar color based on the health percentage
         if (healthPercentage < 0.30f)
         {
-            healthAmount.color = Color.red; 
+            healthAmount.color = Color.red;
         }
         else if (healthPercentage < 0.65f)
         {
-            healthAmount.color = Color.yellow; 
-        }else 
+            healthAmount.color = Color.yellow;
+        }
+        else
         {
-            healthAmount.color = Color.green; 
+            healthAmount.color = Color.green;
         }
     }
 
@@ -118,6 +122,7 @@ public class UIManager : MonoBehaviour
     public void ToggleGameOverPanel(string message)
     {
         Cursor.lockState = CursorLockMode.None;
+        countdownPanel.SetActive(false);
         gameOverPanel.gameObject.SetActive(true);
         gameOverMessage.text = message;
     }
@@ -203,10 +208,31 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void StartRespawnCountdown()
+    {
+        // Set set default countdown value
+        countdown = 5;
+        countdownText.text = Mathf.Round(countdown).ToString();
+        countdownPanel.SetActive(true);
+
+        StartCoroutine(CountdownRoutine());
+    }
+    private IEnumerator CountdownRoutine()
+    {
+        while (countdown > 0)
+        {
+            countdown -= 1f * Time.deltaTime;
+            countdownText.text = Mathf.Round(countdown).ToString();
+            yield return null;
+        }
+
+        countdownPanel.SetActive(false);
+    }
+
     public void ChangeSensitivity()
     {
         CameraController.mouseSensitivity = sensitivitySlider.value;
         sensitivityAmt.text = Mathf.Round(sensitivitySlider.value).ToString();
     }
-    
+
 }
